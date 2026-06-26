@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section id="sobre" className="py-24 bg-white overflow-hidden">
+    <section id="sobre" className="pt-24 pb-12 bg-[#1C1C1E] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
@@ -15,21 +15,23 @@ export default function About() {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <h2 className="text-4xl font-black text-slate-900 mb-6 leading-tight">
-              Mais de 10 anos a cuidar do <br /> 
-              <span className="text-brand">seu bem-estar.</span>
+            <h2 className="text-4xl font-black text-white mb-6 leading-tight">
+              Uma equipa dedicada ao cuidado do <br />
+              <span className="text-brand">seu espaço.</span>
             </h2>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed italic">
-              "Na CleanPro, acreditamos que uma casa limpa é o reflexo de uma mente tranquila. Tratamos o seu espaço com o rigor de quem cuida do próprio lar."
+            <p className="text-lg text-white/70 mb-8 leading-relaxed italic">
+              "Na Clean4You, tratamos a sua casa como se fosse a nossa. Cada detalhe importa, cada espaço merece o melhor cuidado."
             </p>
-            <div className="grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
+            <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
               <div>
-                <p className="text-3xl font-black text-brand">12h</p>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Tempo Resposta</p>
+                <p className="text-3xl mb-1">✅</p>
+                <p className="text-base font-black text-white">Pontualidade</p>
+                <p className="text-sm font-bold text-white/50 uppercase tracking-widest">Respeitamos o seu tempo</p>
               </div>
               <div>
-                <p className="text-3xl font-black text-brand">+10k</p>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Limpezas Totais</p>
+                <p className="text-3xl mb-1">🔒</p>
+                <p className="text-base font-black text-white">Confiança</p>
+                <p className="text-sm font-bold text-white/50 uppercase tracking-widest">Equipa verificada e segurada</p>
               </div>
             </div>
           </motion.div>
@@ -43,8 +45,8 @@ export default function About() {
           >
             <div className="aspect-square relative rounded-[3rem] md:rounded-[4rem] overflow-hidden shadow-2xl border-4 md:border-8 border-slate-50">
               <Image 
-                src="/Equipa-limpeza-sorrir.jpg" 
-                alt="Equipa CleanPro"
+                src="/images/Equipa-limpeza-sorrir.jpg" 
+                alt="Equipa Clean4You"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -53,7 +55,7 @@ export default function About() {
             {/* BADGE AJUSTADO PARA NÃO TAPAR A EQUIPA NO MOBILE */}
             <div className="absolute top-3 right-3 md:top-6 md:right-6 
                             flex flex-col items-center justify-center 
-                            backdrop-blur-md bg-white/10 
+                            backdrop-blur-md bg-[#1C1C1E]/10 
                             p-1.5 md:p-3 
                             w-16 md:w-24 
                             rounded-xl md:rounded-2xl 
@@ -61,8 +63,8 @@ export default function About() {
               
               <span className="text-xl md:text-3xl filter drop-shadow-md">🏅</span>
               
-              <p className="font-extrabold text-white mt-0.5 text-[7px] md:text-[10px] uppercase text-center tracking-tighter md:tracking-widest drop-shadow-sm leading-tight">
-                Empresa<br className="hidden md:block" /> Certificada
+              <p className="font-extrabold text-[#F2EDE4] mt-0.5 text-[7px] md:text-[10px] uppercase text-center tracking-tighter md:tracking-widest drop-shadow-sm leading-tight">
+                Serviço<br className="hidden md:block" /> Garantido
               </p>
             </div>
           </motion.div>

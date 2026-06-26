@@ -10,7 +10,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-[3rem] p-8 md:p-16 text-white shadow-2xl shadow-blue-900/30"
+          className="relative bg-[#1C1C1E]/10 backdrop-blur-xl border border-white/20 rounded-[3rem] p-8 md:p-16 text-[#F2EDE4] shadow-2xl shadow-blue-900/30"
         >
           {/* Cabeçalho do Formulário */}
           <div className="text-center mb-10">
@@ -18,7 +18,7 @@ export default function Contact() {
               Orçamento <span className="text-blue-400">Grátis</span>
             </h2>
             <p className="text-blue-100 italic font-light text-lg">
-              "Em 60 minutos terá o seu orçamento."
+              "Respondemos em menos de 24 horas."
             </p>
           </div>
 
@@ -30,7 +30,7 @@ export default function Contact() {
                 <input 
                   type="text" 
                   placeholder="Ex: João Silva"
-                  className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-white/10 outline-none transition-all"
+                  className="w-full px-6 py-4 rounded-2xl bg-[#1C1C1E]/5 border border-white/10 text-[#F2EDE4] placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-[#1C1C1E]/10 outline-none transition-all"
                 />
               </div>
 
@@ -40,7 +40,7 @@ export default function Contact() {
                 <input 
                   type="tel" 
                   placeholder="912 345 678"
-                  className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-white/10 outline-none transition-all"
+                  className="w-full px-6 py-4 rounded-2xl bg-[#1C1C1E]/5 border border-white/10 text-[#F2EDE4] placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-[#1C1C1E]/10 outline-none transition-all"
                 />
               </div>
             </div>
@@ -51,14 +51,14 @@ export default function Contact() {
               <textarea 
                 rows={4}
                 placeholder="Descreva brevemente o serviço..."
-                className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-white/10 outline-none transition-all resize-none"
+                className="w-full px-6 py-4 rounded-2xl bg-[#1C1C1E]/5 border border-white/10 text-[#F2EDE4] placeholder:text-blue-200/40 focus:border-blue-400 focus:bg-[#1C1C1E]/10 outline-none transition-all resize-none"
               ></textarea>
             </div>
 
             {/* BOTÃO TITAN (Visível em Mobile e com Shimmer) */}
             <button 
               type="submit" 
-              className="group relative w-full overflow-hidden bg-white py-5 rounded-2xl font-black text-brand shadow-xl transition-all active:scale-95"
+              className="group relative w-full overflow-hidden bg-[#1C1C1E] py-5 rounded-2xl font-black text-brand shadow-xl transition-all active:scale-95"
             >
               {/* Efeito de brilho que atravessa o botão sozinho */}
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-blue-100 to-transparent animate-shimmer" />

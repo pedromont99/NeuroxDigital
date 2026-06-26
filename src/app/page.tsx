@@ -2,6 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
+import CTABanner from "@/components/CTABanner";
+import BeforeAfter from "@/components/BeforeAfter";
 import Atuacao from "@/components/Location";
 import Map from "@/components/Map";
 import Contact from "@/components/Contact";
@@ -33,7 +36,16 @@ export default function Home() {
         <Services />
       </section>
 
-      {/* 6. Mapa de Localização */}
+      {/* 6. Testemunhos */}
+      <Testimonials />
+
+      {/* 7. CTA Banner */}
+      <CTABanner />
+
+      {/* 8. Antes/Depois */}
+      <BeforeAfter />
+
+      {/* 9. Mapa de Localização */}
       <section id="localizacao">
         <Map />
       </section>

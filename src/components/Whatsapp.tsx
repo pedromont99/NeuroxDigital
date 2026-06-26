@@ -16,10 +16,10 @@ export default function Whatsapp() {
       transition={{ delay: 2, type: "spring" }} // Aparece 2s depois do site abrir
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center group"
+      className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-[#F2EDE4] p-4 rounded-full shadow-2xl flex items-center justify-center group"
     >
       {/* Tooltip que aparece no Hover */}
-      <span className="absolute right-full mr-4 bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-100">
+      <span className="absolute right-full mr-4 bg-[#1C1C1E] text-slate-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-100">
         Fale connosco agora!
       </span>
       

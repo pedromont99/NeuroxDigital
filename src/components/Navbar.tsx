@@ -1,84 +1,109 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const navLinks = [
-  { name: "Início", href: "#home" },
-  { name: "Sobre", href: "#sobre" },
-  { name: "Áreas", href: "#atuacao" },
-  { name: "Serviços", href: "#servicos" },
-  { name: "Localização", href: "#localizacao" },
+  { name: "Início", href: "#home", tablet: true },
+  { name: "Sobre", href: "#sobre", tablet: false },
+  { name: "Áreas", href: "#atuacao", tablet: false },
+  { name: "Serviços", href: "#servicos", tablet: true },
+  { name: "Resultados", href: "#resultados", tablet: true },
+  { name: "Localização", href: "#localizacao", tablet: false },
 ];
 
+const ease = [0.4, 0, 0.2, 1] as const;
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const outerPadding = isScrolled ? (isMobile ? 16 : 500) : 24;
 
   return (
-    <>
-      <nav className="fixed w-full z-[100] bg-white/90 backdrop-blur-md border-b border-slate-100 h-20">
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-          
-          {/* LOGO */}
-          <div className="text-2xl font-black text-slate-900 tracking-tighter">
-            Clean<span className="text-2xl font-black tracking-tighter text-blue-600">Pro</span>
+    <nav className="fixed w-full z-[100] h-20 bg-transparent">
+      <motion.div
+        className="w-full h-full flex items-center"
+        animate={{
+          paddingTop: isScrolled ? 8 : 0,
+          paddingBottom: isScrolled ? 8 : 0,
+          paddingLeft: outerPadding,
+          paddingRight: outerPadding,
+        }}
+        transition={{ duration: 0.5, ease }}
+      >
+        <motion.div
+          className="w-full flex items-center justify-between"
+          animate={
+            isScrolled
+              ? {
+                  backgroundColor: "rgba(28,28,30,0.95)",
+                  borderRadius: 9999,
+                  paddingLeft: 32,
+                  paddingRight: 32,
+                  paddingTop: 12,
+                  paddingBottom: 12,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.5)",
+                }
+              : {
+                  backgroundColor: "rgba(0,0,0,0)",
+                  borderRadius: 0,
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  boxShadow: "none",
+                }
+          }
+          style={{
+            border: isScrolled
+              ? "1px solid rgba(255,255,255,0.1)"
+              : "1px solid rgba(255,255,255,0)",
+          }}
+          transition={{ duration: 0.5, ease }}
+        >
+          {/* COL 1 — LOGO */}
+          <div className="flex-shrink-0 text-2xl font-black text-white tracking-tighter">
+            Clean<span className="text-2xl font-black tracking-tighter text-blue-400">4You</span>
           </div>
 
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* COL 2 — NAV LINKS: tablet shows 3, desktop shows all */}
+          <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-sm font-bold text-slate-600 hover:text-blue transition-colors">
+              <a
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-bold text-white/80 hover:text-white transition-colors ${link.tablet ? "hidden md:inline" : "hidden lg:inline"}`}
+              >
                 {link.name}
               </a>
             ))}
-            <a href="#contactos" className="bg-blue-600 hover:bg-white text-blue hover:text-blue px-6 py-2 rounded-full font-bold transition-all border border-blue/10">
+          </div>
+
+          {/* COL 3 — CTA */}
+          <div className="flex-shrink-0 hidden md:flex">
+            <a
+              href="#contactos"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
+            >
               Orçamento
             </a>
           </div>
-
-          {/* MOBILE BUTTON */}
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-slate-900 z-[110]"
-          >
-            {isOpen ? <X size={30} /> : <Menu size={30} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* OVERLAY DO MENU MOBILE */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-white z-[105] lg:hidden flex flex-col p-8 pt-28"
-          >
-            <div className="flex flex-col gap-6">
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
-                  onClick={() => setIsOpen(false)}
-                  className="text-2xl font-black text-slate-900 border-b border-slate-50 pb-4"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a 
-                href="#contactos" 
-                onClick={() => setIsOpen(false)}
-                className="bg-brand text-white p-6 rounded-3xl font-bold text-center text-xl shadow-xl mt-4"
-              >
-                Pedir Orçamento Grátis
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        </motion.div>
+      </motion.div>
+    </nav>
   );
 }

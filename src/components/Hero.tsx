@@ -1,12 +1,13 @@
 "use client";
 import Image from 'next/image';
 import { motion } from "framer-motion";
+import RotatingText from "./RotatingText";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-hero-gradient text-white">
+    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-hero-gradient text-[#F2EDE4]">
       {/* 1. Detalhe de Luz Difusa (Ajustado para não tapar o conteúdo) */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-[#1C1C1E]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
 
@@ -17,28 +18,28 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           {/* Badge: Agora com fundo claro para ler-se bem sobre o azul escuro */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-white text-sm font-bold mb-8 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-[#1C1C1E]/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-[#F2EDE4] text-sm font-bold mb-8 shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
             </span>
-            Equipas disponíveis em Lisboa
+            Equipas disponíveis em Setúbal e Palmela
           </div>
 
-          {/* Título: Mudado para Branco (text-white) para brilhar sobre o gradiente */}
+          {/* Título: Mudado para Branco (text-[#F2EDE4]) para brilhar sobre o gradiente */}
           <h1 className="text-5xl lg:text-7xl font-black leading-[1.1] mb-8 tracking-tighter">
-            A sua casa <span className="text-blue-300">brilhante</span>, <br /> sem esforço.
+            A sua casa <RotatingText />, <br /> sem complicações.
           </h1>
 
           <p className="text-xl text-blue-100/80 mb-12 max-w-lg leading-relaxed font-light">
-            Equipas profissionais de confiança para limpezas domésticas e pós-obras em Lisboa. Garantia de satisfação total.
+            Limpezas domésticas e pós-obras na região de Setúbal e Palmela. Profissionalismo, pontualidade e resultado garantido.
           </p>
 
           {/* BOTÃO E PROVA SOCIAL */}
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <a
               href="#contactos"
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-white px-10 py-4 font-black transition-all hover:scale-105 active:scale-95 shadow-xl"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[#1C1C1E] px-10 py-4 font-black transition-all hover:scale-105 active:scale-95 shadow-xl"
             >
               {/* 1. O Efeito Shimmer (Brilho azulado para contrastar com o branco) */}
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-blue-100 to-transparent group-hover:animate-shimmer" />
@@ -58,7 +59,7 @@ export default function Hero() {
 
             <div className="flex flex-col gap-1 items-center sm:items-start">
               <div className="flex text-yellow-400 text-lg">★★★★★</div>
-              <p className="text-xs font-bold text-blue-100 uppercase tracking-widest">+1.200 Clientes Satisfeitos</p>
+              <p className="text-xs font-bold text-blue-100 uppercase tracking-widest">Serviço de confiança</p>
             </div>
           </div>
         </motion.div>
@@ -75,7 +76,7 @@ export default function Hero() {
 
           <div className="relative w-full h-[500px] rounded-[3.5rem] overflow-hidden border-[12px] border-white/10 backdrop-blur-sm shadow-2xl">
             <Image
-              src="/equipa-limpeza.jpg"
+              src="/images/equipa-limpeza.jpg"
               alt="Limpeza Profissional CleanPro"
               fill
               className="object-cover"

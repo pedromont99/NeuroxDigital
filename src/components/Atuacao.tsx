@@ -5,7 +5,7 @@ const zonas = ["Lisboa Centro", "Sintra", "Cascais", "Oeiras", "Loures", "Amador
 
 export default function Location() {
   return (
-    <section id="atuacao" className="py-24 bg-slate-900 text-white overflow-hidden rounded-[4rem] mx-4 my-10 shadow-2xl">
+    <section id="atuacao" className="py-24 bg-slate-900 text-[#F2EDE4] overflow-hidden rounded-[4rem] mx-4 my-10 shadow-2xl">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export default function Location() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="px-8 py-4 bg-white/5 border border-white/10 rounded-2xl font-bold hover:bg-brand transition-all cursor-default"
+              className="px-8 py-4 bg-[#1C1C1E]/5 border border-white/10 rounded-2xl font-bold hover:bg-brand transition-all cursor-default"
             >
               {zona}
             </motion.span>
