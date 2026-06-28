@@ -50,7 +50,7 @@ export default function Navbar() {
           animate={
             isScrolled
               ? {
-                  backgroundColor: "rgba(28,28,30,0.95)",
+                  backgroundColor: "rgba(28,43,56,0.95)",
                   borderRadius: 9999,
                   paddingLeft: 32,
                   paddingRight: 32,
@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           {/* COL 1 — LOGO */}
           <div className="flex-shrink-0 text-2xl font-black text-white tracking-tighter">
-            Clean<span className="text-2xl font-black tracking-tighter text-blue-400">4You</span>
+            Clean<span className="text-2xl font-black tracking-tighter text-support">4You</span>
           </div>
 
           {/* COL 2 — NAV LINKS: tablet shows 3, desktop shows all */}
@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 hidden md:flex">
             <a
               href="#contactos"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
+              className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
             >
               Orçamento
             </a>

@@ -34,7 +34,7 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
   return (
     <div>
       <div
-        className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 cursor-col-resize"
+        className="relative w-full aspect-video rounded-3xl overflow-hidden border border-dark/10 cursor-col-resize"
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
       >
@@ -71,10 +71,10 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
         />
 
         {/* Labels */}
-        <span className="absolute top-3 left-3 text-xs text-white font-bold uppercase tracking-widest bg-black/40 backdrop-blur-sm px-2 py-1 rounded-md pointer-events-none">
+        <span className="absolute top-3 left-3 text-xs text-white font-bold uppercase tracking-widest bg-dark/40 backdrop-blur-sm px-2 py-1 rounded-md pointer-events-none">
           ANTES
         </span>
-        <span className="absolute top-3 right-3 text-xs text-white font-bold uppercase tracking-widest bg-black/40 backdrop-blur-sm px-2 py-1 rounded-md pointer-events-none">
+        <span className="absolute top-3 right-3 text-xs text-white font-bold uppercase tracking-widest bg-dark/40 backdrop-blur-sm px-2 py-1 rounded-md pointer-events-none">
           DEPOIS
         </span>
       </div>
@@ -85,7 +85,7 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
         max={100}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        className="w-full mt-2 accent-blue-500"
+        className="w-full mt-2 accent-primary"
       />
     </div>
   );
@@ -93,7 +93,7 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
 
 export default function BeforeAfter() {
   return (
-    <section id="resultados" className="py-24 bg-[#1C1C1E]">
+    <section id="resultados" className="py-24 bg-light">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -102,10 +102,10 @@ export default function BeforeAfter() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-black text-white mb-3">
+          <h2 className="text-4xl font-black text-dark mb-3">
             Resultados que falam por si
           </h2>
-          <p className="text-white/50">Veja a diferença que a Clean4You faz.</p>
+          <p className="text-dark/50">Veja a diferença que a Clean4You faz.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">

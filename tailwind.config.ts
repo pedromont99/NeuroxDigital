@@ -8,15 +8,14 @@ const config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          light: "#3b82f6",
-          DEFAULT: "#1d4ed8",
-          dark: "#1e3a8a",
-        },
-        accent: "#f59e0b",
+        primary: "#2DB591",
+        "primary-dark": "#1A8C6E",
+        support: "#0EA5E9",
+        light: "#F0FBF8",
+        dark: "#1C2B38",
       },
       backgroundImage: {
-        'hero-gradient': "linear-gradient(to bottom right, #1e3a8a, #1d4ed8, #3b82f6)",
+        'hero-gradient': "linear-gradient(to bottom right, #1A8C6E, #2DB591, #0EA5E9)",
         'shimmer-gradient': "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
       },
       animation: {

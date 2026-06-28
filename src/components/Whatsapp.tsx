@@ -19,7 +19,7 @@ export default function Whatsapp() {
       className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-[#F2EDE4] p-4 rounded-full shadow-2xl flex items-center justify-center group"
     >
       {/* Tooltip que aparece no Hover */}
-      <span className="absolute right-full mr-4 bg-[#1C1C1E] text-slate-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-100">
+      <span className="absolute right-full mr-4 bg-dark text-slate-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-100">
         Fale connosco agora!
       </span>
       

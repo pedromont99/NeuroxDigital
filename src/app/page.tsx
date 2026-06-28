@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen selection:bg-blue-100 selection:text-blue-900">
+    <main className="min-h-screen selection:bg-light selection:text-dark">
       {/* 1. A Navbar gere-se sozinha no topo */}
       <Navbar />
 

@@ -19,7 +19,7 @@ function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
 
   return (
     <motion.div
-      className="relative overflow-hidden p-8 bg-[#1C1C1E] rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+      className="relative overflow-hidden p-8 bg-dark rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -46,9 +46,9 @@ function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
 
 export default function Services() {
   return (
-    <section id="servicos" className="py-24 bg-slate-50">
+    <section id="servicos" className="py-24 bg-light">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-black mb-12 text-slate-900">Os Nossos Serviços</h2>
+        <h2 className="text-3xl font-black mb-12 text-dark">Os Nossos Serviços</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((s, i) => (
             <SpotlightCard key={i} s={s} i={i} />

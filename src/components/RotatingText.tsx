@@ -16,7 +16,7 @@ export default function RotatingText() {
 
   return (
     <span
-      className="inline-block overflow-hidden text-blue-300"
+      className="inline-block overflow-hidden text-support"
       style={{ verticalAlign: "-0.1em", height: "1.2em" }}
     >
       <AnimatePresence mode="wait">

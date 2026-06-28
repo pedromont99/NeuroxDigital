@@ -4,31 +4,28 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Opcional: Evita que a Navbar tape o título da secção ao chegar lá */
 section {
   scroll-margin-top: 100px;
 }
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #2DB591;
+  --color-primary-dark: #1A8C6E;
+  --color-support: #0EA5E9;
+  --color-light: #F0FBF8;
+  --color-dark: #1C2B38;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #2DB591;
+  --color-primary-dark: #1A8C6E;
+  --color-support: #0EA5E9;
+  --color-light: #F0FBF8;
+  --color-dark: #1C2B38;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-light);
+  color: var(--color-dark);
   font-family: Arial, Helvetica, sans-serif;
 }
