@@ -25,7 +25,8 @@
 *.pem
 
 # client images
-/public/images/
+/public/images/*
+!/public/images/logo/
 
 # debug
 npm-debug.log*
