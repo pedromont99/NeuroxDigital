@@ -8,24 +8,20 @@ section {
   scroll-margin-top: 100px;
 }
 
-:root {
-  --color-primary: #2DB591;
-  --color-primary-dark: #1A8C6E;
-  --color-support: #0EA5E9;
-  --color-light: #F0FBF8;
-  --color-dark: #1C2B38;
-}
-
-@theme inline {
-  --color-primary: #2DB591;
-  --color-primary-dark: #1A8C6E;
-  --color-support: #0EA5E9;
-  --color-light: #F0FBF8;
-  --color-dark: #1C2B38;
+@theme {
+  --color-primary: #204AD2;
+  --color-primary-dark: #1837A3;
+  --color-teal: #15BDA6;
+  --color-teal-dark: #0F9382;
+  --color-light: #E8F0FE;
+  --color-dark: #0A0F1E;
+  --color-dark-2: #111827;
+  --color-dark-3: #1A2540;
+  --background-image-hero-gradient: linear-gradient(135deg, #0A0F1E 0%, #111827 60%, #0D1B2A 100%);
 }
 
 body {
-  background: var(--color-light);
-  color: var(--color-dark);
+  background-color: #0A0F1E;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function CTABanner() {
   return (
-    <section className="bg-primary-dark border-y border-support/30 py-20">
+    <section className="bg-dark-3 border-y border-teal/30 py-20">
       <motion.div
         className="max-w-4xl mx-auto px-6 text-center"
         initial={{ opacity: 0, y: 20 }}
@@ -19,7 +19,7 @@ export default function CTABanner() {
         </p>
         <a
           href="#contactos"
-          className="inline-block bg-primary text-white font-black px-10 py-4 rounded-full hover:bg-support transition-colors"
+          className="inline-block bg-primary text-white font-black px-10 py-4 rounded-full hover:bg-primary-dark transition-colors"
         >
           Pedir Orçamento Grátis →
         </a>

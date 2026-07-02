@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
-    <section id="contactos" className="py-24 bg-primary-dark overflow-hidden">
+    <section id="contactos" className="py-24 bg-dark-2 overflow-hidden border-t border-teal/20">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}

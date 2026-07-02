@@ -45,7 +45,7 @@ export default function Hero() {
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent group-hover:animate-shimmer" />
 
               {/* 2. O Texto: Forçamos a cor Azul Profunda aqui */}
-              <span className="relative z-10 flex items-center gap-2 text-dark">
+              <span className="relative z-10 flex items-center gap-2 text-light">
                 Pedir Orçamento Grátis
                 <svg
                   className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 stroke-dark"

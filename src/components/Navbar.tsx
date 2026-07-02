@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Início", href: "#home", tablet: true },
@@ -76,8 +77,15 @@ export default function Navbar() {
           transition={{ duration: 0.5, ease }}
         >
           {/* COL 1 — LOGO */}
-          <div className="flex-shrink-0 text-2xl font-black text-white tracking-tighter">
-            Clean<span className="text-2xl font-black tracking-tighter text-support">4You</span>
+          <div className="flex-shrink-0">
+            <Image
+              src="/images/logo/logo-nav.png"
+              alt="Clean4You"
+              width={252}
+              height={87}
+              className="h-9 w-auto"
+              priority
+            />
           </div>
 
           {/* COL 2 — NAV LINKS: tablet shows 3, desktop shows all */}

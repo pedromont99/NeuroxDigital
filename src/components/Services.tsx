@@ -46,9 +46,9 @@ function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
 
 export default function Services() {
   return (
-    <section id="servicos" className="py-24 bg-light">
+    <section id="servicos" className="py-24 bg-dark-2">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-black mb-12 text-dark">Os Nossos Serviços</h2>
+        <h2 className="text-3xl font-black mb-12 text-white">Os Nossos Serviços</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((s, i) => (
             <SpotlightCard key={i} s={s} i={i} />

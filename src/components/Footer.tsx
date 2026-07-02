@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,9 +9,16 @@ export default function Footer() {
           
           {/* COLUNA 1: SOBRE A MARCA */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-black tracking-tighter">
-              Clean<span className="text-primary">4You</span>
-            </h3>
+            <Image
+              src="/images/logo/logo-footer.png"
+              alt="Clean4You"
+              width={252}
+              height={87}
+              className="h-12 w-auto"
+            />
+            <p className="text-teal text-xs font-bold uppercase tracking-widest -mt-4">
+              Limpeza Profunda e Bem-estar
+            </p>
             <p className="text-slate-400 leading-relaxed">
               Limpezas domésticas e pós-obras na região de Setúbal e Palmela. Qualidade e confiança em cada serviço.
             </p>

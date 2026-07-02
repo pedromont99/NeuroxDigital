@@ -32,9 +32,7 @@ export default function Home() {
       </section>
 
       {/* 5. Serviços Oferecidos */}
-      <section id="servicos">
-        <Services />
-      </section>
+      <Services />
 
       {/* 6. Testemunhos */}
       <Testimonials />
@@ -46,14 +44,10 @@ export default function Home() {
       <BeforeAfter />
 
       {/* 9. Mapa de Localização */}
-      <section id="localizacao">
-        <Map />
-      </section>
+      <Map />
 
       {/* 7. Formulário de Contacto */}
-      <section id="contactos">
-        <Contact />
-      </section>
+      <Contact />
       
       {/* 8. O Componente Footer Profissional (Substituímos o manual por este) */}
       <Footer /> 

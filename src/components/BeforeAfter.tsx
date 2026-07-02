@@ -85,7 +85,8 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
         max={100}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        className="w-full mt-2 accent-primary"
+        className="w-full mt-2"
+        style={{ accentColor: '#1DB8A0' }}
       />
     </div>
   );
@@ -93,7 +94,7 @@ function ComparisonCard({ card }: { card: typeof cards[0] }) {
 
 export default function BeforeAfter() {
   return (
-    <section id="resultados" className="py-24 bg-light">
+    <section id="resultados" className="py-24 bg-dark-2">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -102,10 +103,10 @@ export default function BeforeAfter() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-black text-dark mb-3">
+          <h2 className="text-4xl font-black text-white mb-3">
             Resultados que falam por si
           </h2>
-          <p className="text-dark/50">Veja a diferença que a Clean4You faz.</p>
+          <p className="text-white/50">Veja a diferença que a Clean4You faz.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
