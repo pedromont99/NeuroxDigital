@@ -1,12 +1,17 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Sofa, BedDouble, Armchair, CarFront, Grid3x3, Droplets } from "lucide-react";
 
 const services = [
-  { title: "Doméstica", desc: "Limpeza regular e de manutenção para a sua casa.", icon: "🏠" },
-  { title: "Pós-Obra", desc: "Limpeza profunda após obras ou remodelações.", icon: "🏗️" },
-  { title: "Limpeza a Fundo", desc: "Limpeza intensiva para uma casa completamente renovada.", icon: "🧹" },
+  { title: "Sofás", desc: "Materiais naturais ou sintéticos — tecido, pele e similares.", Icon: Sofa },
+  { title: "Colchões e Cabeceiras", desc: "Descrição em breve.", Icon: BedDouble },
+  { title: "Cadeiras / Poltronas", desc: "Descrição em breve.", Icon: Armchair },
+  { title: "Assentos auto", desc: "Descrição em breve.", Icon: CarFront },
+  { title: "Tapetes e Alcatifas", desc: "Descrição em breve.", Icon: Grid3x3 },
+  { title: "Impermeabilização", desc: "Descrição em breve.", Icon: Droplets },
 ];
+
 
 function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -23,7 +28,7 @@ function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.15 }}
+      transition={{ duration: 0.5, delay: i * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -36,9 +41,9 @@ function SpotlightCard({ s, i }: { s: typeof services[0]; i: number }) {
         }}
       />
       <div className="relative z-10">
-        <div className="text-4xl mb-4">{s.icon}</div>
+        <s.Icon className="w-10 h-10 mb-4 text-teal" strokeWidth={1.5} />
         <h3 className="text-xl font-bold mb-2 text-white">{s.title}</h3>
-        <p className="text-white/60 leading-relaxed">{s.desc}</p>
+        <p className="text-white/60 leading-relaxed text-sm">{s.desc}</p>
       </div>
     </motion.div>
   );
@@ -48,8 +53,11 @@ export default function Services() {
   return (
     <section id="servicos" className="py-24 bg-dark-2">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-black mb-12 text-white">Os Nossos Serviços</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <h2 className="text-3xl font-black mb-2 text-white">Os Nossos Serviços</h2>
+        <p className="text-teal text-sm font-bold uppercase tracking-widest mb-12">
+          Limpeza e Higienização
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((s, i) => (
             <SpotlightCard key={i} s={s} i={i} />
           ))}
