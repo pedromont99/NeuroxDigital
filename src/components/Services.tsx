@@ -2,8 +2,29 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sofa, BedDouble, Armchair, CarFront, Grid3x3, Droplets, Check, X } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const services = [
+type ServiceContent = {
+  intro?: string;
+  process?: string;
+  benefits: string[];
+};
+
+type ServiceVariant = ServiceContent & {
+  label: string;
+};
+
+type ServiceBase = {
+  title: string;
+  Icon: LucideIcon;
+  shortDesc: string;
+};
+
+type ServiceItem =
+  | (ServiceBase & { variants: ServiceVariant[] })
+  | (ServiceBase & ServiceContent & { variants?: undefined });
+
+const services: ServiceItem[] = [
   {
     title: "Sofás",
     Icon: Sofa,
@@ -207,7 +228,9 @@ export default function Services() {
                   </div>
                 )}
 
-                <p className="text-white/70 text-sm leading-relaxed mb-3">{detail.intro}</p>
+                {detail.intro && (
+                  <p className="text-white/70 text-sm leading-relaxed mb-3">{detail.intro}</p>
+                )}
                 {detail.process && (
                   <p className="text-white/50 text-sm leading-relaxed mb-5">{detail.process}</p>
                 )}
