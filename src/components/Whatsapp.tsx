@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 
 export default function Whatsapp() {
-  const phone = "351912345678"; // Substitui pelo número do teu colega
+  const phone = "351919991222";
   const message = "Olá! Gostaria de pedir um orçamento para uma limpeza.";
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
