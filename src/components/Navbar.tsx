@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -18,6 +19,7 @@ const ease = [0.4, 0, 0.2, 1] as const;
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
@@ -37,7 +39,7 @@ export default function Navbar() {
   return (
     <nav className="fixed w-full z-[100] h-20 bg-transparent">
       <motion.div
-        className="w-full h-full flex items-center"
+        className="w-full flex flex-col"
         animate={{
           paddingTop: isScrolled ? 8 : 0,
           paddingBottom: isScrolled ? 8 : 0,
@@ -111,7 +113,49 @@ export default function Navbar() {
               <span className="relative z-10">Orçamento</span>
             </a>
           </div>
+
+          {/* MOBILE TOGGLE */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex md:hidden text-white p-2"
+            aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </motion.div>
+
+        {/* MOBILE PANEL */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease }}
+              className="md:hidden mt-2 mx-6 bg-[rgba(28,43,56,0.97)] border border-white/10 rounded-3xl overflow-hidden"
+            >
+              <div className="flex flex-col p-4 gap-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-white/80 hover:text-white text-base font-bold py-3 border-b border-white/10 last:border-0"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+                <a
+                  href="#contactos"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-3 bg-primary text-white text-center px-6 py-3 rounded-full font-bold"
+                >
+                  Orçamento
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </nav>
   );

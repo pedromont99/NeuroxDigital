@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
@@ -77,6 +77,13 @@ export default function Footer() {
        {/* BARRA INFERIOR (COPYRIGHT + ATRIBUIÇÃO) */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
           <p>© 2026 Clean4You. Desenvolvido por Neurox Digital. Todos os direitos reservados.</p>
+          <a
+            href="#home"
+            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors normal-case tracking-normal text-xs font-bold"
+          >
+            <ArrowUp size={14} />
+            Voltar ao topo
+          </a>
         </div>
       </div>
     </footer>
