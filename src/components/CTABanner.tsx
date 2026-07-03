@@ -19,9 +19,10 @@ export default function CTABanner() {
         </p>
         <a
           href="#contactos"
-          className="inline-block bg-primary text-white font-black px-10 py-4 rounded-full hover:bg-primary-dark transition-colors"
+          className="group relative inline-block overflow-hidden bg-primary text-white font-black px-10 py-4 rounded-full hover:bg-primary-dark transition-colors"
         >
-          Pedir Orçamento Grátis →
+          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent group-hover:animate-shimmer" />
+          <span className="relative z-10">Pedir Orçamento Grátis →</span>
         </a>
       </motion.div>
     </section>

@@ -18,6 +18,13 @@ section {
   --color-dark-2: #111827;
   --color-dark-3: #1A2540;
   --background-image-hero-gradient: linear-gradient(135deg, #0A0F1E 0%, #111827 60%, #0D1B2A 100%);
+  --animate-shimmer: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 body {

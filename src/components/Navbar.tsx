@@ -105,9 +105,10 @@ export default function Navbar() {
           <div className="flex-shrink-0 hidden md:flex">
             <a
               href="#contactos"
-              className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
+              className="group relative overflow-hidden bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
             >
-              Orçamento
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent group-hover:animate-shimmer" />
+              <span className="relative z-10">Orçamento</span>
             </a>
           </div>
         </motion.div>
