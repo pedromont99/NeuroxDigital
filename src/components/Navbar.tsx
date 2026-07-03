@@ -139,7 +139,14 @@ export default function Navbar() {
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const target = document.querySelector(link.href);
+                      if (target) {
+                        target.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setTimeout(() => setMobileOpen(false), 400);
+                    }}
                     className="text-white/80 hover:text-white text-base font-bold py-3 border-b border-white/10 last:border-0"
                   >
                     {link.name}
@@ -147,7 +154,14 @@ export default function Navbar() {
                 ))}
                 <a
                   href="#contactos"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const target = document.querySelector("#contactos");
+                    if (target) {
+                      target.scrollIntoView({ behavior: "smooth" });
+                    }
+                    setTimeout(() => setMobileOpen(false), 400);
+                  }}
                   className="mt-3 bg-primary text-white text-center px-6 py-3 rounded-full font-bold"
                 >
                   Orçamento
