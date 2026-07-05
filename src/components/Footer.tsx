@@ -40,6 +40,7 @@ export default function Footer() {
               <li><a href="#sobre" className="hover:text-[#F2EDE4] transition-colors">A Empresa</a></li>
               <li><a href="#servicos" className="hover:text-[#F2EDE4] transition-colors">Serviços</a></li>
               <li><a href="#atuacao" className="hover:text-[#F2EDE4] transition-colors">Áreas de Atuação</a></li>
+              <li><a href="#faq" className="hover:text-[#F2EDE4] transition-colors">Perguntas Frequentes</a></li>
             </ul>
           </div>
 
