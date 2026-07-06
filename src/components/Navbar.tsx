@@ -37,7 +37,7 @@ export default function Navbar() {
   const outerPadding = isScrolled ? (isMobile ? 16 : 500) : 24;
 
   return (
-    <nav className="fixed w-full z-[100] h-20 bg-transparent">
+    <nav className="fixed w-full z-[100] h-20 bg-transparent flex items-center">
       <motion.div
         className="w-full flex flex-col"
         animate={{
