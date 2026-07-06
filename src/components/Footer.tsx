@@ -58,7 +58,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <MapPin size={18} className="text-support" />
-                <span>Setúbal e Palmela, Portugal</span>
+                <span>Margem Sul e Periferia de Lisboa</span>
               </li>
             </ul>
           </div>

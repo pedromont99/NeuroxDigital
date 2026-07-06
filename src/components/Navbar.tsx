@@ -11,7 +11,6 @@ const navLinks = [
   { name: "Áreas", href: "#atuacao", tablet: false },
   { name: "Serviços", href: "#servicos", tablet: true },
   { name: "Resultados", href: "#resultados", tablet: true },
-  { name: "Localização", href: "#localizacao", tablet: false },
 ];
 
 const ease = [0.4, 0, 0.2, 1] as const;

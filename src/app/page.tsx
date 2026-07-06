@@ -6,7 +6,6 @@ import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
 import BeforeAfter from "@/components/BeforeAfter";
 import Atuacao from "@/components/Location";
-import Map from "@/components/Map";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -43,9 +42,6 @@ export default function Home() {
 
       {/* 8. Antes/Depois */}
       <BeforeAfter />
-
-      {/* 9. Mapa de Localização */}
-      <Map />
 
       {/* 9.5 Perguntas Frequentes */}
       <FAQ />
