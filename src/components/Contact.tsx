@@ -15,7 +15,7 @@ export default function Contact() {
           {/* Cabeçalho do Formulário */}
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter">
-              Orçamento <span className="text-support">Grátis</span>
+              Orçamento <span className="text-teal">Grátis</span>
             </h2>
             <p className="text-light italic font-light text-lg">
               "Respondemos em menos de 24 horas."
@@ -30,7 +30,7 @@ export default function Contact() {
                 <input
                   type="text"
                   placeholder="Ex: João Silva"
-                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-support focus:bg-dark/10 outline-none transition-all"
+                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
                 />
               </div>
 
@@ -40,7 +40,7 @@ export default function Contact() {
                 <input
                   type="tel"
                   placeholder="912 345 678"
-                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-support focus:bg-dark/10 outline-none transition-all"
+                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
                 />
               </div>
             </div>
@@ -51,7 +51,7 @@ export default function Contact() {
               <textarea
                 rows={4}
                 placeholder="Descreva brevemente o serviço..."
-                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-support focus:bg-dark/10 outline-none transition-all resize-none"
+                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all resize-none"
               ></textarea>
             </div>
 

@@ -49,15 +49,15 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6">Contactos</h4>
             <ul className="space-y-4 text-slate-400">
               <li className="flex items-center gap-3">
-                <Phone size={18} className="text-support" />
+                <Phone size={18} className="text-teal" />
                 <span>+351 919 991 222</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={18} className="text-support" />
+                <Mail size={18} className="text-teal" />
                 <span>geral@clean4you.pt</span>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin size={18} className="text-support" />
+                <MapPin size={18} className="text-teal" />
                 <span>Margem Sul e Periferia de Lisboa</span>
               </li>
             </ul>
