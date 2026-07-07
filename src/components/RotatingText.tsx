@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const words = ["impecável", "brilhante", "organizada", "renovada"];
+const words = ["impecáveis", "renovados", "higienizados", "revitalizados"];
 
 export default function RotatingText() {
   const [index, setIndex] = useState(0);
@@ -16,7 +16,7 @@ export default function RotatingText() {
 
   return (
     <span
-      className="inline-block overflow-hidden text-support"
+      className="inline-block overflow-hidden text-teal"
       style={{ verticalAlign: "-0.1em", height: "1.2em" }}
     >
       <AnimatePresence mode="wait">

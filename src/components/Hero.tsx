@@ -20,19 +20,19 @@ export default function Hero() {
           {/* Badge: Agora com fundo claro para ler-se bem sobre o azul escuro */}
           <div className="inline-flex items-center gap-2 bg-light/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-[#F2EDE4] text-sm font-bold mb-8 shadow-sm">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-support opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-support"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal"></span>
             </span>
-            Equipas disponíveis em Setúbal e Palmela
+            Atendemos particulares e empresas na Margem Sul e Periferia de Lisboa
           </div>
 
           {/* Título: Mudado para Branco (text-[#F2EDE4]) para brilhar sobre o gradiente */}
           <h1 className="text-5xl lg:text-7xl font-black leading-[1.1] mb-8 tracking-tighter">
-            A sua casa <RotatingText />, <br /> sem complicações.
+            Os seus estofos <RotatingText />, <br /> sem complicações.
           </h1>
 
           <p className="text-xl text-light/80 mb-12 max-w-lg leading-relaxed font-light">
-            Limpezas domésticas e pós-obras na região de Setúbal e Palmela. Profissionalismo, pontualidade e resultado garantido.
+            Higienização profissional de sofás, colchões, estofos automóvel e tapetes — para casas e empresas em toda a Margem Sul e periferia de Lisboa.
           </p>
 
           {/* BOTÃO E PROVA SOCIAL */}

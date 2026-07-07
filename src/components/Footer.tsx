@@ -20,7 +20,7 @@ export default function Footer() {
               Limpeza Profunda e Bem-estar
             </p>
             <p className="text-slate-400 leading-relaxed">
-              Limpezas domésticas e pós-obras na região de Setúbal e Palmela. Qualidade e confiança em cada serviço.
+              Higienização profissional de estofos, sofás e colchões na Margem Sul e periferia de Lisboa. Qualidade e confiança em cada serviço.
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all">

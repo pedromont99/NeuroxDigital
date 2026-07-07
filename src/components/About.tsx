@@ -20,7 +20,7 @@ export default function About() {
               <span className="text-teal">seu espaço.</span>
             </h2>
             <p className="text-lg text-white/70 mb-8 leading-relaxed italic">
-              "Na Clean4You, tratamos a sua casa como se fosse a nossa. Cada detalhe importa, cada espaço merece o melhor cuidado."
+              "Na Clean4You, tratamos os seus estofos como se fossem nossos. Cada peça importa, cada detalhe merece o melhor cuidado."
             </p>
             <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
               <div>

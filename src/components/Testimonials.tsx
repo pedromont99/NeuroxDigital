@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "Ficámos muito satisfeitos com o resultado. Casa completamente transformada após as obras.",
+    quote: "Fizeram uma diferença incrível no sofá de tecido, que já estava bastante desgastado. Ficou com um aspeto completamente renovado.",
     name: "Maria S.",
     location: "Setúbal",
   },
   {
-    quote: "Pontuais, cuidadosos e profissionais. Voltamos a contratar com certeza.",
+    quote: "Equipa pontual e profissional na higienização do meu carro. Recomendo sem hesitar.",
     name: "João F.",
     location: "Palmela",
   },
   {
-    quote: "Excelente serviço de limpeza doméstica. Recomendo a toda a gente.",
+    quote: "Excelente serviço na limpeza do colchão. Notei mesmo a diferença na qualidade do sono.",
     name: "Ana P.",
     location: "Azeitão",
   },
