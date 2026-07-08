@@ -91,7 +91,7 @@ const services: ServiceItem[] = [
     shortDesc: "Limpeza profunda por extração, restaurando o aspeto original.",
     intro: "Tapetes e alcatifas são superfícies que acumulam grande quantidade de poeiras, sujidade e bactérias devido à circulação diária de pessoas e animais na habitação. A Clean4you realiza a higienização profissional destes revestimentos através de métodos de limpeza profunda por extração, que permitem remover resíduos presentes nas fibras e melhorar o aspeto geral do revestimento.",
     benefits: [
-      "Remoção de manchas difíceis e sujidade incrustada, restaurando a aparência original do tapete ou alcatifa.",
+      "Remoção de manchas difíceis e alguma sujidade incrustada, procurando restaurar a aparência original do tapete ou alcatifa. Nota: devido à natureza química de certas substâncias, algumas manchas específicas — nomeadamente de colas, tintas e resinas — podem fixar-se de forma irreversível nas fibras, não sendo tecnicamente possível a sua remoção total em alguns casos.",
       "Eliminação de odores desagradáveis, deixando o ambiente mais fresco e agradável.",
       "Prolonga a vida útil do tapete, prevenindo o desgaste prematuro das fibras.",
       "Melhora a qualidade do ar interior, removendo alergénios e partículas de poeira retidas no tapete.",

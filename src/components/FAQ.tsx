@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "As nódoas são todas removidas a 100%?",
-    a: "Não, nem todas as nódoas saem. Conseguimos retirar cerca de 90% das nódoas. Muitas vezes, a natureza da própria nódoa é o principal motivo para que não saia completamente — manchas antigas, por exemplo, penetraram mais profundamente nas fibras, tornando a remoção muito mais difícil. Entre as mais difíceis destacam-se as de vinho tinto, tinta de marcador permanente, sangue e café (que devem ser tratadas o mais rápido possível), e a descoloração causada pelo sol ou por produtos abrasivos como a lixívia.",
+    a: "Não, nem todas as nódoas saem. Conseguimos retirar cerca de 90% das nódoas. Muitas vezes, a natureza da própria nódoa é o principal motivo para que não saia completamente — manchas antigas, por exemplo, penetraram mais profundamente nas fibras, tornando a remoção muito mais difícil. Entre as mais difíceis destacam-se as de vinho tinto, tinta de marcador permanente, sangue e café (que devem ser tratadas o mais rápido possível), a descoloração causada pelo sol ou por produtos abrasivos como a lixívia, e substâncias como colas, tintas e resinas, que pela sua natureza química podem fixar-se de forma irreversível nas fibras, não sendo tecnicamente possível a remoção total em alguns casos.",
   },
   {
     q: "Quanto tempo demora a secar um sofá ou colchão?",
