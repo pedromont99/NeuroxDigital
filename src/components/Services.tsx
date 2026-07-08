@@ -56,7 +56,7 @@ const services: ServiceItem[] = [
     title: "Colchões e Cabeceiras",
     Icon: BedDouble,
     shortDesc: "Remove ácaros, bactérias e odores para um sono mais saudável.",
-    intro: "Os colchões acumulam naturalmente suor, poeiras, ácaros, bactérias e microrganismos que podem comprometer a higiene e a saúde no ambiente de descanso diariamente.",
+    intro: "Os ácaros da poeira alimentam-se de células de pele que perdemos naturalmente todos os dias, e um colchão nunca higienizado acumula populações crescentes deles — e dos seus resíduos — ao longo do tempo, uma das causas mais estudadas de alergias respiratórias em ambiente doméstico. Juntam-se ainda suor, poeiras e bactérias que comprometem a higiene do seu descanso diário.",
     benefits: [
       "Remoção de ácaros, bactérias e fungos, proporcionando um ambiente de sono mais saudável e tranquilo.",
       "Eliminação de odores desagradáveis, contribuindo para uma sensação de frescura e conforto.",
@@ -171,8 +171,11 @@ export default function Services() {
     <section id="servicos" className="py-24 bg-dark-2">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-black mb-2 text-white">Os Nossos Serviços</h2>
-        <p className="text-teal text-sm font-bold uppercase tracking-widest mb-12">
+        <p className="text-teal text-sm font-bold uppercase tracking-widest mb-4">
           Limpeza e Higienização
+        </p>
+        <p className="text-white/40 text-sm italic mb-12">
+          Não sabe qual serviço precisa? Comece pelo mais óbvio — nós ajustamos o resto na visita.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((s, i) => (
