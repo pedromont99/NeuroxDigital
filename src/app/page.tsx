@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
+import Empresas from "@/components/Empresas";
 import CTABanner from "@/components/CTABanner";
 import BeforeAfter from "@/components/BeforeAfter";
 import Atuacao from "@/components/Location";
@@ -33,6 +34,9 @@ export default function Home() {
 
       {/* 5. Serviços Oferecidos */}
       <Services />
+
+      {/* 5.5 Empresas */}
+      <Empresas />
 
       {/* 6. Testemunhos */}
       <Testimonials />

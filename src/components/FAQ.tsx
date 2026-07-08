@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "A Clean4you faz trabalhos em empresas e espaços comerciais?",
-    a: "Sim. Em ambientes de trabalho, a higiene e conservação dos estofos e revestimentos têxteis contribuem diretamente para o conforto dos colaboradores e para a imagem do espaço. Trabalhamos com hotelaria, escritórios, alojamento local (AL), clínicas, entradas e receções, e auditórios — sempre com possibilidade de agendamento em horário pós-laboral que não interfira com a rotina de trabalho.",
+    a: "Sim. Trabalhamos com empresas, espaços comerciais e hotelaria, sempre com possibilidade de agendamento em horário que não interfira com a rotina de trabalho. Veja mais detalhes na secção 'Também Trabalhamos com Empresas', logo acima dos Serviços.",
   },
   {
     q: "No que consiste a limpeza de estofos?",
