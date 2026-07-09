@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Whatsapp from "@/components/Whatsapp";
+import CookieConsent from "@/components/CookieConsent";
 
 // 1. Configuração da Fonte
 const inter = Inter({
@@ -34,6 +35,9 @@ export default function RootLayout({
 
         {/* O WhatsApp fica flutuante em todas as páginas */}
         <Whatsapp />
+
+        {/* Banner de consentimento de cookies, gate para o GTM futuro */}
+        <CookieConsent />
       </body>
     </html>
   );
