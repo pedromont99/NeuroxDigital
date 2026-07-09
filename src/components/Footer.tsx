@@ -1,7 +1,12 @@
+"use client";
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const hrefFor = (hash: string) => (isHome ? hash : `/${hash}`);
   return (
     <footer className="bg-dark text-[#F2EDE4] pt-20 pb-24 md:pb-10">
       <div className="max-w-7xl mx-auto px-6">
@@ -36,11 +41,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6">Navegação</h4>
             <ul className="space-y-4 text-slate-400">
-              <li><a href="#home" className="hover:text-[#F2EDE4] transition-colors">Início</a></li>
-              <li><a href="#sobre" className="hover:text-[#F2EDE4] transition-colors">A Empresa</a></li>
-              <li><a href="#servicos" className="hover:text-[#F2EDE4] transition-colors">Serviços</a></li>
-              <li><a href="#atuacao" className="hover:text-[#F2EDE4] transition-colors">Áreas de Atuação</a></li>
-              <li><a href="#faq" className="hover:text-[#F2EDE4] transition-colors">Perguntas Frequentes</a></li>
+              <li><a href={hrefFor("#home")} className="hover:text-[#F2EDE4] transition-colors">Início</a></li>
+              <li><a href={hrefFor("#sobre")} className="hover:text-[#F2EDE4] transition-colors">A Empresa</a></li>
+              <li><a href={hrefFor("#servicos")} className="hover:text-[#F2EDE4] transition-colors">Serviços</a></li>
+              <li><a href={hrefFor("#atuacao")} className="hover:text-[#F2EDE4] transition-colors">Áreas de Atuação</a></li>
+              <li><a href={hrefFor("#faq")} className="hover:text-[#F2EDE4] transition-colors">Perguntas Frequentes</a></li>
               <li><a href="/politica-privacidade" className="hover:text-[#F2EDE4] transition-colors">Política de Privacidade</a></li>
             </ul>
           </div>
@@ -80,7 +85,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} Clean4You. Built with intention by <a href="https://sandrasantos.pt" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">sandrasantos.pt</a>. Todos os direitos reservados.</p>
           <a
-            href="#home"
+            href={hrefFor("#home")}
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors normal-case tracking-normal text-xs font-bold"
           >
             <ArrowUp size={14} />

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Início", href: "#home", tablet: true },
@@ -19,6 +20,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const hrefFor = (hash: string) => (isHome ? hash : `/${hash}`);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
@@ -94,7 +98,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={hrefFor(link.href)}
                 className={`text-sm font-bold text-white/80 hover:text-white transition-colors ${link.tablet ? "hidden md:inline" : "hidden lg:inline"}`}
               >
                 {link.name}
@@ -105,7 +109,7 @@ export default function Navbar() {
           {/* COL 3 — CTA */}
           <div className="flex-shrink-0 hidden md:flex">
             <a
-              href="#contactos"
+              href={hrefFor("#contactos")}
               className="group relative overflow-hidden bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
             >
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent group-hover:animate-shimmer" />
@@ -137,8 +141,12 @@ export default function Navbar() {
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
-                    href={link.href}
+                    href={hrefFor(link.href)}
                     onClick={(e) => {
+                      if (!isHome) {
+                        setMobileOpen(false);
+                        return;
+                      }
                       e.preventDefault();
                       const target = document.querySelector(link.href);
                       if (target) {
@@ -152,8 +160,12 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a
-                  href="#contactos"
+                  href={hrefFor("#contactos")}
                   onClick={(e) => {
+                    if (!isHome) {
+                      setMobileOpen(false);
+                      return;
+                    }
                     e.preventDefault();
                     const target = document.querySelector("#contactos");
                     if (target) {

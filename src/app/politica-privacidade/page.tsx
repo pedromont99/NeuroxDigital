@@ -17,7 +17,7 @@ export default function PoliticaPrivacidade() {
         <section className="mb-8">
           <h2 className="text-xl font-bold text-teal mb-3">1. Responsável pelo Tratamento</h2>
           <p className="leading-relaxed">
-            A Clean4You é operada por Cláudio Paradela, em regime de trabalhador independente (recibos verdes), NIF 222694416. Para qualquer questão relacionada com esta política ou com os seus dados pessoais, pode contactar-nos através de{" "}
+            A Clean4You é operada por Cláudio Paradela, em regime de trabalhador independente, NIF 222694416. Para qualquer questão relacionada com esta política ou com os seus dados pessoais, pode contactar-nos através de{" "}
             <a href="mailto:geral@clean4you.pt" className="text-teal underline hover:text-teal-dark">geral@clean4you.pt</a>.
           </p>
         </section>
