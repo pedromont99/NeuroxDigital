@@ -1,18 +1,68 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
+const SERVICE_OPTIONS = [
+  "Sofás",
+  "Colchões e Cabeceiras",
+  "Cadeiras / Poltronas",
+  "Assentos auto",
+  "Tapetes e Alcatifas",
+  "Impermeabilização",
+];
+
+const MAX_TOTAL_MB = 15;
+
+type ServiceRow = {
+  id: number;
+  service: string;
+  m2: string;
+};
+
 export default function Contact() {
+  const [rows, setRows] = useState<ServiceRow[]>([{ id: 0, service: "", m2: "" }]);
+  const [nextId, setNextId] = useState(1);
+  const [photos, setPhotos] = useState<File[]>([]);
+  const [photoError, setPhotoError] = useState("");
+
+  const chosenServices = rows.map((r) => r.service).filter(Boolean);
+
+  const updateRow = (id: number, field: "service" | "m2", value: string) => {
+    setRows(rows.map((r) => (r.id === id ? { ...r, [field]: value } : r)));
+  };
+
+  const addRow = () => {
+    setRows([...rows, { id: nextId, service: "", m2: "" }]);
+    setNextId(nextId + 1);
+  };
+
+  const removeRow = (id: number) => {
+    setRows(rows.filter((r) => r.id !== id));
+  };
+
+  const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    const totalMB = files.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
+    if (totalMB > MAX_TOTAL_MB) {
+      setPhotoError(`O total das fotos não pode ultrapassar ${MAX_TOTAL_MB}MB.`);
+      setPhotos([]);
+      e.target.value = "";
+      return;
+    }
+    setPhotoError("");
+    setPhotos(files);
+  };
+
   return (
     <section id="contactos" className="py-24 bg-dark-2 overflow-hidden border-t border-teal/20">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative bg-dark/10 backdrop-blur-xl border border-white/20 rounded-[3rem] p-8 md:p-16 text-[#F2EDE4] shadow-2xl shadow-dark/30"
         >
-          {/* Cabeçalho do Formulário */}
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter">
               Orçamento <span className="text-teal">Grátis</span>
@@ -24,7 +74,6 @@ export default function Contact() {
 
           <form className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Campo Nome */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-bold text-light ml-2">Nome Completo</label>
                 <input
@@ -33,8 +82,6 @@ export default function Contact() {
                   className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
                 />
               </div>
-
-              {/* Campo Telefone */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-bold text-light ml-2">Telemóvel</label>
                 <input
@@ -45,7 +92,68 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Campo de Mensagem */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-bold text-light ml-2">Email</label>
+              <input
+                type="email"
+                placeholder="joao.silva@email.com"
+                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
+              />
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <label className="text-sm font-bold text-light ml-2">Serviço(s) pretendido(s)</label>
+              {rows.map((row) => {
+                const availableOptions = SERVICE_OPTIONS.filter(
+                  (opt) => opt === row.service || !chosenServices.includes(opt)
+                );
+                return (
+                  <div key={row.id} className="bg-dark/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-3">
+                    <div className="flex gap-3 items-center">
+                      <select
+                        value={row.service}
+                        onChange={(e) => updateRow(row.id, "service", e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] outline-none focus:border-teal transition-all"
+                      >
+                        <option value="">Escolha o serviço</option>
+                        {availableOptions.map((opt) => (
+                          <option key={opt} value={opt}>{opt}</option>
+                        ))}
+                      </select>
+                      {rows.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeRow(row.id)}
+                          aria-label="Remover serviço"
+                          className="text-light/40 hover:text-light/70 transition-colors flex-shrink-0"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                    {row.service === "Tapetes e Alcatifas" && (
+                      <input
+                        type="number"
+                        placeholder="Área aproximada (m²)"
+                        value={row.m2}
+                        onChange={(e) => updateRow(row.id, "m2", e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 outline-none focus:border-teal transition-all"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+              {chosenServices.length < SERVICE_OPTIONS.length && (
+                <button
+                  type="button"
+                  onClick={addRow}
+                  className="self-start text-teal text-sm font-bold border border-teal/40 border-dashed rounded-full px-4 py-2 hover:bg-teal/10 transition-colors"
+                >
+                  + Adicionar outro serviço
+                </button>
+              )}
+            </div>
+
             <div className="flex flex-col gap-2">
               <label className="text-sm font-bold text-light ml-2">Como podemos ajudar?</label>
               <textarea
@@ -55,14 +163,28 @@ export default function Contact() {
               ></textarea>
             </div>
 
-            {/* BOTÃO TITAN (Visível em Mobile e com Shimmer) */}
-            <button 
-              type="submit" 
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-bold text-light ml-2">
+                Fotos (opcional, até {MAX_TOTAL_MB}MB no total)
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handlePhotos}
+                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all"
+              />
+              {photoError && <p className="text-red-400 text-sm ml-2">{photoError}</p>}
+              {photos.length > 0 && !photoError && (
+                <p className="text-teal text-sm ml-2">{photos.length} foto(s) selecionada(s)</p>
+              )}
+            </div>
+
+            <button
+              type="submit"
               className="group relative w-full overflow-hidden bg-dark py-5 rounded-2xl font-black text-primary shadow-xl transition-all active:scale-95"
             >
-              {/* Efeito de brilho que atravessa o botão sozinho */}
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent animate-shimmer" />
-
               <span className="relative z-10 flex items-center justify-center gap-2 text-primary-dark text-lg">
                 Enviar Pedido de Orçamento
               </span>

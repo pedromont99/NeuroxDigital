@@ -25,7 +25,7 @@ export default function PoliticaPrivacidade() {
         <section className="mb-8">
           <h2 className="text-xl font-bold text-teal mb-3">2. Que Dados Recolhemos</h2>
           <p className="leading-relaxed mb-3">
-            Através do formulário de contacto no nosso site, recolhemos o nome, número de telemóvel e a mensagem que nos escreve. Estes dados são fornecidos diretamente por si, de forma voluntária, ao pedir um orçamento.
+            Através do formulário de contacto no nosso site, recolhemos o nome, número de telemóvel, email, o(s) serviço(s) pretendido(s), a mensagem que nos escreve, e opcionalmente fotos do artigo a higienizar. Estes dados são fornecidos diretamente por si, de forma voluntária, ao pedir um orçamento.
           </p>
           <p className="leading-relaxed">
             Se, no futuro, ativarmos ferramentas de análise de tráfego ou publicidade (Google Analytics, Google Ads, Meta Ads), poderemos também recolher dados de navegação através de cookies — ver secção 5.
