@@ -78,7 +78,7 @@ export default function Contact() {
                 <label className="text-sm font-bold text-light ml-2">Nome Completo</label>
                 <input
                   type="text"
-                  placeholder="Ex: João Silva"
+                  placeholder="Nome"
                   className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
                 />
               </div>
@@ -115,9 +115,9 @@ export default function Contact() {
                         onChange={(e) => updateRow(row.id, "service", e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] outline-none focus:border-teal transition-all"
                       >
-                        <option value="">Escolha o serviço</option>
+                        <option value="" className="bg-dark-2 text-white">Escolha o serviço</option>
                         {availableOptions.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt} className="bg-dark-2 text-white">{opt}</option>
                         ))}
                       </select>
                       {rows.length > 1 && (
