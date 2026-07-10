@@ -47,6 +47,7 @@ export default function Footer() {
               <li><a href={hrefFor("#atuacao")} className="hover:text-[#F2EDE4] transition-colors">Áreas de Atuação</a></li>
               <li><a href={hrefFor("#faq")} className="hover:text-[#F2EDE4] transition-colors">Perguntas Frequentes</a></li>
               <li><a href="/politica-privacidade" className="hover:text-[#F2EDE4] transition-colors">Política de Privacidade</a></li>
+              <li><a href="/termos-condicoes" className="hover:text-[#F2EDE4] transition-colors">Termos e Condições</a></li>
             </ul>
           </div>
 
