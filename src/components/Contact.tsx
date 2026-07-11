@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
   "Impermeabilização",
 ];
 
-const MAX_TOTAL_MB = 15;
+const MAX_TOTAL_MB = 8;
 
 type ServiceRow = {
   id: number;
@@ -19,11 +19,29 @@ type ServiceRow = {
   m2: string;
 };
 
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [rows, setRows] = useState<ServiceRow[]>([{ id: 0, service: "", m2: "" }]);
   const [nextId, setNextId] = useState(1);
   const [photos, setPhotos] = useState<File[]>([]);
   const [photoError, setPhotoError] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const chosenServices = rows.map((r) => r.service).filter(Boolean);
 
@@ -53,6 +71,48 @@ export default function Contact() {
     setPhotos(files);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (photoError) return;
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      const photoData = await Promise.all(
+        photos.map(async (file) => ({
+          name: file.name,
+          content: await fileToBase64(file),
+        }))
+      );
+
+      const services = rows
+        .filter((r) => r.service)
+        .map((r) => ({ service: r.service, m2: r.m2 || null }));
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, email, message, services, photos: photoData }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Falha ao enviar. Tente novamente.");
+      }
+
+      setStatus("success");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setMessage("");
+      setRows([{ id: 0, service: "", m2: "" }]);
+      setPhotos([]);
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMsg(err.message || "Falha ao enviar. Tente novamente.");
+    }
+  };
+
   return (
     <section id="contactos" className="py-24 bg-dark-2 overflow-hidden border-t border-teal/20">
       <div className="max-w-4xl mx-auto px-6">
@@ -72,124 +132,147 @@ export default function Contact() {
             </p>
           </div>
 
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          {status === "success" ? (
+            <div className="text-center py-10">
+              <p className="text-teal text-2xl font-black mb-2">Pedido enviado!</p>
+              <p className="text-light/70">Entraremos em contacto em menos de 24 horas.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-bold text-light ml-2">Nome Completo</label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Nome"
+                    className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-bold text-light ml-2">Telemóvel</label>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="912 345 678"
+                    className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
+                  />
+                </div>
+              </div>
+
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-light ml-2">Nome Completo</label>
+                <label className="text-sm font-bold text-light ml-2">Email</label>
                 <input
-                  type="text"
-                  placeholder="Nome"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="joao.silva@email.com"
                   className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-light ml-2">Telemóvel</label>
-                <input
-                  type="tel"
-                  placeholder="912 345 678"
-                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
-                />
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-light ml-2">Email</label>
-              <input
-                type="email"
-                placeholder="joao.silva@email.com"
-                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
-              />
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <label className="text-sm font-bold text-light ml-2">Serviço(s) pretendido(s)</label>
-              {rows.map((row) => {
-                const availableOptions = SERVICE_OPTIONS.filter(
-                  (opt) => opt === row.service || !chosenServices.includes(opt)
-                );
-                return (
-                  <div key={row.id} className="bg-dark/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-3">
-                    <div className="flex gap-3 items-center">
-                      <select
-                        value={row.service}
-                        onChange={(e) => updateRow(row.id, "service", e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] outline-none focus:border-teal transition-all"
-                      >
-                        <option value="" className="bg-dark-2 text-white">Escolha o serviço</option>
-                        {availableOptions.map((opt) => (
-                          <option key={opt} value={opt} className="bg-dark-2 text-white">{opt}</option>
-                        ))}
-                      </select>
-                      {rows.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeRow(row.id)}
-                          aria-label="Remover serviço"
-                          className="text-light/40 hover:text-light/70 transition-colors flex-shrink-0"
+              <div className="flex flex-col gap-3">
+                <label className="text-sm font-bold text-light ml-2">Serviço(s) pretendido(s)</label>
+                {rows.map((row) => {
+                  const availableOptions = SERVICE_OPTIONS.filter(
+                    (opt) => opt === row.service || !chosenServices.includes(opt)
+                  );
+                  return (
+                    <div key={row.id} className="bg-dark/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-3">
+                      <div className="flex gap-3 items-center">
+                        <select
+                          value={row.service}
+                          onChange={(e) => updateRow(row.id, "service", e.target.value)}
+                          className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] outline-none focus:border-teal transition-all"
                         >
-                          ✕
-                        </button>
+                          <option value="" className="bg-dark-2 text-white">Escolha o serviço</option>
+                          {availableOptions.map((opt) => (
+                            <option key={opt} value={opt} className="bg-dark-2 text-white">{opt}</option>
+                          ))}
+                        </select>
+                        {rows.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeRow(row.id)}
+                            aria-label="Remover serviço"
+                            className="text-light/40 hover:text-light/70 transition-colors flex-shrink-0"
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+                      {row.service === "Tapetes e Alcatifas" && (
+                        <input
+                          type="number"
+                          placeholder="Área aproximada (m²)"
+                          value={row.m2}
+                          onChange={(e) => updateRow(row.id, "m2", e.target.value)}
+                          className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 outline-none focus:border-teal transition-all"
+                        />
                       )}
                     </div>
-                    {row.service === "Tapetes e Alcatifas" && (
-                      <input
-                        type="number"
-                        placeholder="Área aproximada (m²)"
-                        value={row.m2}
-                        onChange={(e) => updateRow(row.id, "m2", e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-dark/10 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 outline-none focus:border-teal transition-all"
-                      />
-                    )}
-                  </div>
-                );
-              })}
-              {chosenServices.length < SERVICE_OPTIONS.length && (
-                <button
-                  type="button"
-                  onClick={addRow}
-                  className="self-start text-teal text-sm font-bold border border-teal/40 border-dashed rounded-full px-4 py-2 hover:bg-teal/10 transition-colors"
-                >
-                  + Adicionar outro serviço
-                </button>
+                  );
+                })}
+                {chosenServices.length < SERVICE_OPTIONS.length && (
+                  <button
+                    type="button"
+                    onClick={addRow}
+                    className="self-start text-teal text-sm font-bold border border-teal/40 border-dashed rounded-full px-4 py-2 hover:bg-teal/10 transition-colors"
+                  >
+                    + Adicionar outro serviço
+                  </button>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-bold text-light ml-2">Como podemos ajudar?</label>
+                <textarea
+                  rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Descreva brevemente o serviço..."
+                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-bold text-light ml-2">
+                  Fotos (opcional, até {MAX_TOTAL_MB}MB no total)
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handlePhotos}
+                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all"
+                />
+                {photoError && <p className="text-red-400 text-sm ml-2">{photoError}</p>}
+                {photos.length > 0 && !photoError && (
+                  <p className="text-teal text-sm ml-2">{photos.length} foto(s) selecionada(s)</p>
+                )}
+              </div>
+
+              {status === "error" && (
+                <p className="text-red-400 text-sm text-center">{errorMsg}</p>
               )}
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-light ml-2">Como podemos ajudar?</label>
-              <textarea
-                rows={4}
-                placeholder="Descreva brevemente o serviço..."
-                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all resize-none"
-              ></textarea>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-light ml-2">
-                Fotos (opcional, até {MAX_TOTAL_MB}MB no total)
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handlePhotos}
-                className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all"
-              />
-              {photoError && <p className="text-red-400 text-sm ml-2">{photoError}</p>}
-              {photos.length > 0 && !photoError && (
-                <p className="text-teal text-sm ml-2">{photos.length} foto(s) selecionada(s)</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="group relative w-full overflow-hidden bg-dark py-5 rounded-2xl font-black text-primary shadow-xl transition-all active:scale-95"
-            >
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent animate-shimmer" />
-              <span className="relative z-10 flex items-center justify-center gap-2 text-primary-dark text-lg">
-                Enviar Pedido de Orçamento
-              </span>
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="group relative w-full overflow-hidden bg-dark py-5 rounded-2xl font-black text-primary shadow-xl transition-all active:scale-95 disabled:opacity-60"
+              >
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent animate-shimmer" />
+                <span className="relative z-10 flex items-center justify-center gap-2 text-primary-dark text-lg">
+                  {status === "sending" ? "A enviar..." : "Enviar Pedido de Orçamento"}
+                </span>
+              </button>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>
