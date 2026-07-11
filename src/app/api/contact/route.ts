@@ -16,12 +16,45 @@ export async function POST(req: NextRequest) {
       .join(", ") || "Nao especificado";
 
     const htmlContent = `
-      <h2>Novo pedido de orcamento - Clean4You</h2>
-      <p><strong>Nome:</strong> ${name}</p>
-      <p><strong>Telefone:</strong> ${phone}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Servico(s):</strong> ${servicesText}</p>
-      <p><strong>Mensagem:</strong><br/>${(message || "").replace(/\n/g, "<br/>")}</p>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;font-family:Arial,Helvetica,sans-serif;background-color:#ffffff;">
+        <tr>
+          <td style="background-color:#0A0F1E;padding:24px 32px;text-align:center;">
+            <img src="https://www.clean4you.pt/images/logo/logo-nav.png" alt="Clean4You" width="140" style="display:block;margin:0 auto;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px;">
+            <h2 style="color:#204AD2;font-size:20px;margin:0 0 24px;">Novo pedido de orçamento</h2>
+            <table width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;color:#1A2540;">
+              <tr>
+                <td style="padding:6px 0;width:110px;color:#15BDA6;font-weight:bold;">Nome</td>
+                <td style="padding:6px 0;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;color:#15BDA6;font-weight:bold;">Telefone</td>
+                <td style="padding:6px 0;">${phone}</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;color:#15BDA6;font-weight:bold;">Email</td>
+                <td style="padding:6px 0;"><a href="mailto:${email}" style="color:#204AD2;">${email}</a></td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;color:#15BDA6;font-weight:bold;vertical-align:top;">Serviço(s)</td>
+                <td style="padding:6px 0;">${servicesText}</td>
+              </tr>
+            </table>
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E8F0FE;">
+              <p style="color:#15BDA6;font-weight:bold;font-size:14px;margin:0 0 6px;">Mensagem</p>
+              <p style="color:#1A2540;font-size:14px;line-height:1.5;margin:0;">${(message || "Sem mensagem adicional.").replace(/\n/g, "<br/>")}</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color:#111827;padding:16px 32px;text-align:center;">
+            <p style="color:#ffffff;font-size:11px;margin:0;opacity:0.6;">Clean4You &mdash; pedido recebido via clean4you.pt</p>
+          </td>
+        </tr>
+      </table>
     `;
 
     const attachment = (photos || []).map((p: { name: string; content: string }) => ({
