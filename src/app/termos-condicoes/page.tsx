@@ -17,7 +17,7 @@ export default function TermosCondicoes() {
         <section className="mb-8">
           <h2 className="text-xl font-bold text-teal mb-3">1. Âmbito do Serviço</h2>
           <p className="leading-relaxed">
-            A Clean4You, operada por Cláudio Paradela (trabalhador independente, NIF 222694416), presta serviços profissionais de limpeza e higienização de estofos, sofás, colchões, cadeiras, poltronas, assentos automóvel, tapetes, alcatifas e impermeabilização, ao domicílio, na Margem Sul e periferia de Lisboa.
+            A Clean4You, operada por Cláudio Rodrigues (trabalhador independente, NIF 222694416), presta serviços profissionais de limpeza e higienização de estofos, sofás, colchões, cadeiras, poltronas, assentos automóvel, tapetes, alcatifas e impermeabilização, ao domicílio, na Margem Sul e periferia de Lisboa.
           </p>
         </section>
 

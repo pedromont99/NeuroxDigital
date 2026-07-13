@@ -46,8 +46,6 @@ export default function Footer() {
               <li><a href={hrefFor("#servicos")} className="hover:text-[#F2EDE4] transition-colors">Serviços</a></li>
               <li><a href={hrefFor("#atuacao")} className="hover:text-[#F2EDE4] transition-colors">Áreas de Atuação</a></li>
               <li><a href={hrefFor("#faq")} className="hover:text-[#F2EDE4] transition-colors">Perguntas Frequentes</a></li>
-              <li><a href="/politica-privacidade" className="hover:text-[#F2EDE4] transition-colors">Política de Privacidade</a></li>
-              <li><a href="/termos-condicoes" className="hover:text-[#F2EDE4] transition-colors">Termos e Condições</a></li>
             </ul>
           </div>
 
@@ -84,7 +82,12 @@ export default function Footer() {
 
        {/* BARRA INFERIOR (COPYRIGHT + ATRIBUIÇÃO) */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} Clean4You. Built with intention by <a href="https://sandrasantos.pt" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">sandrasantos.pt</a>. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Clean4You. Todos os direitos reservados.</p>
+          <div className="flex items-center gap-4">
+            <a href="/politica-privacidade" className="hover:text-white transition-colors">Política de Privacidade</a>
+            <span className="text-slate-800">|</span>
+            <a href="/termos-condicoes" className="hover:text-white transition-colors">Termos e Condições</a>
+          </div>
           <a
             href={hrefFor("#home")}
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors normal-case tracking-normal text-xs font-bold"
