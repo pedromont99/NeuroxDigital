@@ -47,7 +47,7 @@ export default function Navbar() {
   const outerPadding = isScrolled ? (isMobile ? 16 : isWide ? 500 : 140) : 24;
 
   return (
-    <nav className="fixed w-full z-[100] h-20 bg-transparent flex items-center">
+    <nav className="fixed top-0 left-0 w-full z-[100] h-20 bg-transparent flex items-center">
       <motion.div
         className="w-full flex flex-col"
         animate={{
@@ -142,7 +142,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease }}
-              className="md:hidden mt-2 mx-6 bg-[rgba(28,43,56,0.97)] border border-white/10 rounded-3xl overflow-hidden"
+              className="md:hidden mt-2 mx-6 bg-[rgba(28,43,56,0.97)] border border-white/10 rounded-3xl overflow-hidden max-h-[calc(100vh-6rem)] overflow-y-auto"
             >
               <div className="flex flex-col p-4 gap-1">
                 {navLinks.map((link) => (
