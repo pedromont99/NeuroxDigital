@@ -55,11 +55,11 @@ export default function Footer() {
             <ul className="space-y-4 text-slate-400">
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-teal" />
-                <span>+351 919 991 222</span>
+                <a href="tel:+351919991222" className="hover:text-[#F2EDE4] transition-colors">+351 919 991 222</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-teal" />
-                <span>geral@clean4you.pt</span>
+                <a href="mailto:geral@clean4you.pt" className="hover:text-[#F2EDE4] transition-colors">geral@clean4you.pt</a>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin size={18} className="text-teal" />

@@ -1,18 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Whatsapp() {
   const phone = "351919991222";
   const message = "Olá! Gostaria de pedir um orçamento para uma limpeza.";
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  // Aponta para o <footer> da página para saber quando desaparecer o botão
-  const footerRef = useRef<HTMLElement | null>(null);
-  useEffect(() => {
-    footerRef.current = document.querySelector("footer");
-  }, []);
-  const isFooterInView = useInView(footerRef, { margin: "0px 0px -10% 0px" });
 
   return (
     <motion.a
@@ -20,17 +12,10 @@ export default function Whatsapp() {
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
-      animate={{
-        scale: 1,
-        opacity: isFooterInView ? 0 : 1,
-      }}
-      transition={{
-        scale: { delay: 2, type: "spring" }, // Aparece 2s depois do site abrir
-        opacity: { duration: 0.3 },
-      }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 2, type: "spring" }} // Aparece 2s depois do site abrir
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      style={{ pointerEvents: isFooterInView ? "none" : "auto" }}
       className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-[#F2EDE4] p-4 rounded-full shadow-2xl flex items-center justify-center group"
     >
       {/* Halo pulsante atrás do ícone */}
