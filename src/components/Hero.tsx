@@ -39,6 +39,10 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-8 items-center">
             <a
               href="#contactos"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#contactos")?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-primary px-10 py-4 font-black transition-all hover:scale-105 active:scale-95 shadow-xl"
             >
               {/* 1. O Efeito Shimmer (Brilho azulado para contrastar com o branco) */}

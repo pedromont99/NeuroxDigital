@@ -4,8 +4,8 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
-  scroll-margin-top: 100px;
+section[id] {
+  scroll-margin-top: 6rem; /* 96px, um pouco mais que os 80px da navbar, para dar folga visual */
 }
 
 @theme {

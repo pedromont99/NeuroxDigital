@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -24,6 +24,27 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const hrefFor = (hash: string) => (isHome ? hash : `/${hash}`);
+
+  // Handler único para todos os links de âncora (desktop e mobile), garantindo
+  // scroll suave consistente e evitando ficar dependente só do scroll-smooth global.
+  const handleAnchorClick = (
+    e: MouseEvent<HTMLAnchorElement>,
+    hash: string,
+    closeMobileMenu = false
+  ) => {
+    if (!isHome) {
+      if (closeMobileMenu) setMobileOpen(false);
+      return;
+    }
+    e.preventDefault();
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    if (closeMobileMenu) {
+      setTimeout(() => setMobileOpen(false), 400);
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
@@ -106,6 +127,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={hrefFor(link.href)}
+                onClick={(e) => handleAnchorClick(e, link.href)}
                 className={`text-sm font-bold text-white/80 hover:text-white transition-colors ${link.tablet ? "hidden md:inline" : "hidden lg:inline"}`}
               >
                 {link.name}
@@ -117,6 +139,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 hidden md:flex">
             <a
               href={hrefFor("#contactos")}
+              onClick={(e) => handleAnchorClick(e, "#contactos")}
               className="group relative overflow-hidden bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-all text-sm"
             >
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-light to-transparent group-hover:animate-shimmer" />
@@ -149,18 +172,7 @@ export default function Navbar() {
                   <a
                     key={link.name}
                     href={hrefFor(link.href)}
-                    onClick={(e) => {
-                      if (!isHome) {
-                        setMobileOpen(false);
-                        return;
-                      }
-                      e.preventDefault();
-                      const target = document.querySelector(link.href);
-                      if (target) {
-                        target.scrollIntoView({ behavior: "smooth" });
-                      }
-                      setTimeout(() => setMobileOpen(false), 400);
-                    }}
+                    onClick={(e) => handleAnchorClick(e, link.href, true)}
                     className="text-white/80 hover:text-white text-base font-bold py-3 border-b border-white/10 last:border-0"
                   >
                     {link.name}
@@ -168,18 +180,7 @@ export default function Navbar() {
                 ))}
                 <a
                   href={hrefFor("#contactos")}
-                  onClick={(e) => {
-                    if (!isHome) {
-                      setMobileOpen(false);
-                      return;
-                    }
-                    e.preventDefault();
-                    const target = document.querySelector("#contactos");
-                    if (target) {
-                      target.scrollIntoView({ behavior: "smooth" });
-                    }
-                    setTimeout(() => setMobileOpen(false), 400);
-                  }}
+                  onClick={(e) => handleAnchorClick(e, "#contactos", true)}
                   className="mt-3 bg-primary text-white text-center px-6 py-3 rounded-full font-bold"
                 >
                   Orçamento
