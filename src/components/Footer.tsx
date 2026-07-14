@@ -1,5 +1,6 @@
 "use client";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp, Banknote, Smartphone, CreditCard, Building2 } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { BanknotesIcon, CreditCardIcon, DevicePhoneMobileIcon, BuildingLibraryIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -73,7 +74,7 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6">Horário</h4>
             <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
               <p className="text-sm text-slate-400 mb-2">Segunda a Sexta:</p>
-              <p className="font-bold text-[#F2EDE4] mb-4">08:00 — 19:00</p>
+              <p className="font-bold text-[#F2EDE4] mb-4">08:30 — 19:00</p>
               <p className="text-sm text-slate-400 mb-2">Sábados:</p>
               <p className="font-bold text-[#F2EDE4]">09:00 — 13:00</p>
             </div>
@@ -87,19 +88,19 @@ export default function Footer() {
             <p className="text-[10px] uppercase tracking-widest font-bold">Formas de Pagamento</p>
             <div className="flex items-center gap-6">
               <div className="flex flex-col items-center gap-1">
-                <Banknote size={18} />
+                <BanknotesIcon className="w-5 h-5" />
                 <span className="text-[9px] uppercase tracking-wide">Numerário</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <Smartphone size={18} />
+                <DevicePhoneMobileIcon className="w-5 h-5" />
                 <span className="text-[9px] uppercase tracking-wide">MBWay</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <CreditCard size={18} />
+                <CreditCardIcon className="w-5 h-5" />
                 <span className="text-[9px] uppercase tracking-wide">Multibanco</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <Building2 size={18} />
+                <BuildingLibraryIcon className="w-5 h-5" />
                 <span className="text-[9px] uppercase tracking-wide">Transferência</span>
               </div>
             </div>
