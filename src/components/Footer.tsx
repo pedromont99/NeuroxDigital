@@ -1,5 +1,5 @@
 "use client";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp, Banknote, Smartphone, CreditCard, Building2 } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -80,21 +80,46 @@ export default function Footer() {
           </div>
         </div>
 
-       {/* BARRA INFERIOR (COPYRIGHT + ATRIBUIÇÃO) */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} Clean4You. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-4">
-            <a href="/politica-privacidade" className="hover:text-white transition-colors">Política de Privacidade</a>
-            <span className="text-slate-800">|</span>
-            <a href="/termos-condicoes" className="hover:text-white transition-colors">Termos e Condições</a>
+       {/* FORMAS DE PAGAMENTO + BARRA INFERIOR (COPYRIGHT + ATRIBUIÇÃO) */}
+        <div className="pt-8 border-t border-slate-800 flex flex-col gap-8">
+          {/* FORMAS DE PAGAMENTO (apenas informativo) */}
+          <div className="flex flex-col items-center gap-3 text-slate-500">
+            <p className="text-[10px] uppercase tracking-widest font-bold">Formas de Pagamento</p>
+            <div className="flex items-center gap-6">
+              <div className="flex flex-col items-center gap-1">
+                <Banknote size={18} />
+                <span className="text-[9px] uppercase tracking-wide">Numerário</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Smartphone size={18} />
+                <span className="text-[9px] uppercase tracking-wide">MBWay</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <CreditCard size={18} />
+                <span className="text-[9px] uppercase tracking-wide">Multibanco</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Building2 size={18} />
+                <span className="text-[9px] uppercase tracking-wide">Transferência</span>
+              </div>
+            </div>
           </div>
-          <a
-            href={hrefFor("#home")}
-            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors normal-case tracking-normal text-xs font-bold"
-          >
-            <ArrowUp size={14} />
-            Voltar ao topo
-          </a>
+
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest">
+            <p>© {new Date().getFullYear()} Clean4You. Todos os direitos reservados.</p>
+            <div className="flex items-center gap-4">
+              <a href="/politica-privacidade" className="hover:text-white transition-colors">Política de Privacidade</a>
+              <span className="text-slate-800">|</span>
+              <a href="/termos-condicoes" className="hover:text-white transition-colors">Termos e Condições</a>
+            </div>
+            <a
+              href={hrefFor("#home")}
+              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors normal-case tracking-normal text-xs font-bold"
+            >
+              <ArrowUp size={14} />
+              Voltar ao topo
+            </a>
+          </div>
         </div>
       </div>
     </footer>

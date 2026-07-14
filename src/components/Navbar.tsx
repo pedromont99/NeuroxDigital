@@ -19,6 +19,7 @@ const ease = [0.4, 0, 0.2, 1] as const;
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isWide, setIsWide] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -31,13 +32,19 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const checkSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 1024);
+      setIsWide(width > 1536);
+    };
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
   }, []);
 
-  const outerPadding = isScrolled ? (isMobile ? 16 : 500) : 24;
+  // Laptops (1024-1536px) precisam de menos padding do que ecrãs muito largos,
+  // caso contrário o logo/links/CTA colidem quando a navbar encolhe no scroll.
+  const outerPadding = isScrolled ? (isMobile ? 16 : isWide ? 500 : 140) : 24;
 
   return (
     <nav className="fixed w-full z-[100] h-20 bg-transparent flex items-center">
