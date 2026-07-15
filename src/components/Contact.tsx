@@ -144,7 +144,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-bold text-light ml-2">Nome Completo</label>
+                  <label className="text-sm font-bold text-light ml-2">Nome/Empresa</label>
                   <input
                     type="text"
                     required
