@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 
-const margemSul = ["Alcochete", "Almada", "Barreiro", "Moita", "Montijo", "Palmela", "Seixal", "Sesimbra", "Setúbal"];
-const margemNorte = ["Cascais", "Oeiras", "Amadora", "Odivelas", "Loures"];
+export const margemSul = ["Alcochete", "Almada", "Barreiro", "Moita", "Montijo", "Palmela", "Seixal", "Sesimbra", "Setúbal"];
+export const margemNorte = ["Cascais", "Oeiras", "Amadora", "Odivelas", "Loures"];
 
 export default function Atuacao() {
   return (
@@ -30,7 +30,7 @@ export default function Atuacao() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="px-6 py-3 bg-light/10 border border-light/20 rounded-2xl font-bold hover:bg-teal transition-all cursor-default"
+                  className="min-w-[140px] text-center px-6 py-3 bg-light/10 border border-light/20 rounded-2xl font-bold hover:bg-teal transition-all cursor-default"
                 >
                   {zona}
                 </motion.span>
@@ -48,7 +48,7 @@ export default function Atuacao() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="px-6 py-3 bg-light/10 border border-light/20 rounded-2xl font-bold hover:bg-teal transition-all cursor-default"
+                  className="min-w-[140px] text-center px-6 py-3 bg-light/10 border border-light/20 rounded-2xl font-bold hover:bg-teal transition-all cursor-default"
                 >
                   {zona}
                 </motion.span>

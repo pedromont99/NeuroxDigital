@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { margemSul, margemNorte } from "./Location";
 
 const SERVICE_OPTIONS = [
   "Sofás",
@@ -35,6 +36,7 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
   const [message, setMessage] = useState("");
   const [rows, setRows] = useState<ServiceRow[]>([{ id: 0, service: "", m2: "" }]);
   const [nextId, setNextId] = useState(1);
@@ -92,7 +94,7 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, email, message, services, photos: photoData }),
+        body: JSON.stringify({ name, phone, email, location, message, services, photos: photoData }),
       });
 
       if (!res.ok) {
@@ -104,6 +106,7 @@ export default function Contact() {
       setName("");
       setPhone("");
       setEmail("");
+      setLocation("");
       setMessage("");
       setRows([{ id: 0, service: "", m2: "" }]);
       setPhotos([]);
@@ -164,16 +167,40 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-light ml-2">Email</label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="joao.silva@email.com"
-                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
-                />
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-bold text-light ml-2">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="joao.silva@email.com"
+                    className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] placeholder:text-light/40 focus:border-teal focus:bg-dark/10 outline-none transition-all"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-bold text-light ml-2">Localidade</label>
+                  <select
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    required
+                    className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] outline-none focus:border-teal focus:bg-dark/10 transition-all"
+                  >
+                    <option value="" className="bg-dark-2 text-white">Escolha a sua localidade</option>
+                    <optgroup label="Margem Sul" className="bg-dark-2 text-white">
+                      {margemSul.map((zona) => (
+                        <option key={zona} value={zona} className="bg-dark-2 text-white">{zona}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Margem Norte (Periferia)" className="bg-dark-2 text-white">
+                      {margemNorte.map((zona) => (
+                        <option key={zona} value={zona} className="bg-dark-2 text-white">{zona}</option>
+                      ))}
+                    </optgroup>
+                    <option value="Outra" className="bg-dark-2 text-white">Outra zona</option>
+                  </select>
+                </div>
               </div>
 
               <div className="flex flex-col gap-3">

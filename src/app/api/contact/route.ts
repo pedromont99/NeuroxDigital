@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, phone, email, message, services, photos } = body;
+    const { name, phone, email, location, message, services, photos } = body;
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: "Faltam campos obrigatorios." }, { status: 400 });
@@ -37,6 +37,10 @@ export async function POST(req: NextRequest) {
               <tr>
                 <td style="padding:6px 0;color:#15BDA6;font-weight:bold;">Email</td>
                 <td style="padding:6px 0;"><a href="mailto:${email}" style="color:#204AD2;">${email}</a></td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;color:#15BDA6;font-weight:bold;">Localidade</td>
+                <td style="padding:6px 0;">${location || "Nao especificada"}</td>
               </tr>
               <tr>
                 <td style="padding:6px 0;color:#15BDA6;font-weight:bold;vertical-align:top;">Serviço(s)</td>
