@@ -37,13 +37,17 @@ export default function Navbar() {
       return;
     }
     e.preventDefault();
-    const target = document.querySelector(hash);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
     if (closeMobileMenu) {
-      setTimeout(() => setMobileOpen(false), 400);
+      setMobileOpen(false); // fecha já, sem delay, para não competir com o scroll
     }
+    // Espera o próximo frame (o layout do menu já colapsado) antes de iniciar o scroll,
+    // evitando que a reflow do fecho do menu interrompa a animação nativa a meio.
+    requestAnimationFrame(() => {
+      const target = document.querySelector(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
   };
 
   useEffect(() => {
