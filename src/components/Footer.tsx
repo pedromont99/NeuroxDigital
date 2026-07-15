@@ -20,7 +20,7 @@ export default function Footer() {
               alt="Clean4You"
               width={252}
               height={87}
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
             <p className="text-teal text-xs font-bold uppercase tracking-widest -mt-4">
               Limpeza Profunda e Bem-estar

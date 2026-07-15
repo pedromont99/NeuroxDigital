@@ -120,7 +120,7 @@ export default function Navbar() {
               alt="Clean4You"
               width={252}
               height={87}
-              className="h-9 w-auto"
+              className="h-12 w-auto"
               priority
             />
           </div>
