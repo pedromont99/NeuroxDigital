@@ -29,10 +29,10 @@ export default function Footer() {
               Higienização profissional de estofos, sofás e colchões na Margem Sul e periferia de Lisboa. Qualidade e confiança em cada serviço.
             </p>
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-teal transition-all">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-teal transition-all">
                 <Facebook size={20} />
               </a>
             </div>
