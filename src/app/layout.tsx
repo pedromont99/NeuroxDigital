@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Whatsapp from "@/components/Whatsapp";
 import CookieConsent from "@/components/CookieConsent";
+import InAppBrowserBanner from "@/components/InAppBrowserBanner";
 
 // 1. Configuração da Fonte
 const inter = Inter({
@@ -36,6 +37,9 @@ export default function RootLayout({
   return (
     <html lang="pt" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${inter.className} font-sans antialiased`}>
+        {/* Aviso para quem abre o site dentro do browser in-app do Instagram/Facebook */}
+        <InAppBrowserBanner />
+
         {/* O conteúdo das páginas entra aqui */}
         {children}
 
