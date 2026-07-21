@@ -9,6 +9,7 @@ function isMetaInAppBrowser(userAgent: string): boolean {
 
 export default function InAppBrowserBanner() {
   const [visible, setVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (isMetaInAppBrowser(navigator.userAgent)) {
@@ -16,8 +17,10 @@ export default function InAppBrowserBanner() {
     }
   }, []);
 
-  const handleOpenInBrowser = () => {
-    window.open(window.location.href, "_blank");
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
@@ -32,13 +35,13 @@ export default function InAppBrowserBanner() {
         >
           <div className="max-w-3xl mx-auto flex items-center gap-3">
             <p className="flex-1 text-white/80 text-xs sm:text-sm leading-snug">
-              Está a ver este site dentro do Instagram/Facebook, o que pode causar problemas de visualização. Toque aqui para abrir no seu browser.
+              Para uma melhor experiência, toque em ⋮ (menu) acima e escolha &quot;Abrir no Chrome/Safari&quot;, ou copie o link:
             </p>
             <button
-              onClick={handleOpenInBrowser}
+              onClick={handleCopyLink}
               className="shrink-0 px-3 py-2 rounded-full bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold transition-colors whitespace-nowrap"
             >
-              Abrir no browser
+              {copied ? "Copiado!" : "Copiar link"}
             </button>
             <button
               onClick={() => setVisible(false)}
