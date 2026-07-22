@@ -91,15 +91,21 @@ export default function Contact() {
   };
 
   const handlePhotos = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length > 3) {
-      setPhotoError("Podes anexar no máximo 3 fotos.");
-      setPhotos([]);
+    const newFiles = Array.from(e.target.files || []);
+    if (newFiles.length === 0) return;
+
+    const remainingSlots = 3 - photos.length;
+    if (remainingSlots <= 0) {
+      setPhotoError("Já tens 3 fotos anexadas — remove uma para adicionar outra.");
+      e.target.value = "";
       return;
     }
-    if (files.length === 0) {
-      setPhotos([]);
-      setPhotoError("");
+
+    if (newFiles.length > remainingSlots) {
+      setPhotoError(
+        `Só podes adicionar mais ${remainingSlots} foto${remainingSlots > 1 ? "s" : ""} (máximo 3 no total).`
+      );
+      e.target.value = "";
       return;
     }
 
@@ -107,19 +113,19 @@ export default function Contact() {
     setIsProcessingPhoto(true);
 
     try {
-      const compressed = await Promise.all(files.map((f) => compressImage(f)));
-      const totalMB = compressed.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
+      const compressed = await Promise.all(newFiles.map((f) => compressImage(f)));
+      const combined = [...photos, ...compressed];
+      const totalMB = combined.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
       if (totalMB > MAX_TOTAL_MB) {
         setPhotoError(`As fotos, mesmo comprimidas, ultrapassam ${MAX_TOTAL_MB}MB no total. Tenta menos fotos.`);
-        setPhotos([]);
         return;
       }
-      setPhotos(compressed);
+      setPhotos(combined);
     } catch {
       setPhotoError("Não foi possível processar as imagens. Tenta outra vez.");
-      setPhotos([]);
     } finally {
       setIsProcessingPhoto(false);
+      e.target.value = ""; // limpa o valor do input, permitindo voltar a escolher (inclusive a mesma foto) depois
     }
   };
 
