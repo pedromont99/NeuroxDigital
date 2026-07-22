@@ -107,6 +107,17 @@ export default function Contact() {
       }
 
       setStatus("success");
+
+      // Avisa o GTM que o formulário foi enviado com sucesso (necessário
+      // porque o envio é feito via fetch, não via submissão nativa de <form>,
+      // por isso o acionador "Envio de formulários" do GTM não deteta isto sozinho).
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: "orcamento_enviado",
+          form_location: location || "não especificado",
+        });
+      }
+
       setName("");
       setPhone("");
       setEmail("");
