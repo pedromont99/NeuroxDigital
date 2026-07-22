@@ -92,8 +92,8 @@ export default function Contact() {
 
   const handlePhotos = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    if (files.length > 1) {
-      setPhotoError("Só é possível anexar 1 foto.");
+    if (files.length > 3) {
+      setPhotoError("Podes anexar no máximo 3 fotos.");
       setPhotos([]);
       return;
     }
@@ -107,16 +107,16 @@ export default function Contact() {
     setIsProcessingPhoto(true);
 
     try {
-      const compressed = await compressImage(files[0]);
-      const totalMB = compressed.size / (1024 * 1024);
+      const compressed = await Promise.all(files.map((f) => compressImage(f)));
+      const totalMB = compressed.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
       if (totalMB > MAX_TOTAL_MB) {
-        setPhotoError(`A foto não pode ultrapassar ${MAX_TOTAL_MB}MB mesmo depois de comprimida.`);
+        setPhotoError(`As fotos, mesmo comprimidas, ultrapassam ${MAX_TOTAL_MB}MB no total. Tenta menos fotos.`);
         setPhotos([]);
         return;
       }
-      setPhotos([compressed]);
+      setPhotos(compressed);
     } catch {
-      setPhotoError("Não foi possível processar a imagem. Tenta outra foto.");
+      setPhotoError("Não foi possível processar as imagens. Tenta outra vez.");
       setPhotos([]);
     } finally {
       setIsProcessingPhoto(false);
@@ -331,30 +331,35 @@ export default function Contact() {
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-bold text-light ml-2">
-                  Foto (opcional, máx. 1 ficheiro, até 3MB)
+                  Fotos (opcional, máx. 3 fotos, comprimidas automaticamente)
                 </label>
                 <input
                   type="file"
                   accept="image/*"
+                  multiple
                   onChange={handlePhotos}
                   disabled={isProcessingPhoto}
                   className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all disabled:opacity-60"
                 />
                 {isProcessingPhoto && (
-                  <p className="text-light/70 text-sm ml-2 animate-pulse">A processar imagem...</p>
+                  <p className="text-light/70 text-sm ml-2 animate-pulse">A processar imagens...</p>
                 )}
                 {photoError && <p className="text-red-400 text-sm ml-2">{photoError}</p>}
                 {photos.length > 0 && !photoError && !isProcessingPhoto && (
-                  <div className="flex items-center justify-between bg-dark/5 border border-white/10 rounded-xl px-4 py-2 mt-2">
-                    <span className="text-sm text-light truncate">{photos[0].name}</span>
-                    <button
-                      type="button"
-                      onClick={() => setPhotos([])}
-                      className="text-red-400 hover:text-red-300 font-bold ml-3"
-                      aria-label="Remover foto"
-                    >
-                      ×
-                    </button>
+                  <div className="flex flex-col gap-2 mt-2">
+                    {photos.map((file, idx) => (
+                      <div key={idx} className="flex items-center justify-between bg-dark/5 border border-white/10 rounded-xl px-4 py-2">
+                        <span className="text-sm text-light truncate">{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => setPhotos(photos.filter((_, i) => i !== idx))}
+                          className="text-red-400 hover:text-red-300 font-bold ml-3"
+                          aria-label="Remover foto"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
