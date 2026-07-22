@@ -32,6 +32,35 @@ function fileToBase64(file: File): Promise<string> {
   });
 }
 
+async function compressImage(file: File, maxWidth = 1600, quality = 0.75): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      img.onload = () => {
+        const scale = Math.min(1, maxWidth / img.width);
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext("2d");
+        ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) return reject(new Error("Falha ao comprimir imagem"));
+            resolve(new File([blob], file.name.replace(/\.[^.]+$/, ".jpg"), { type: "image/jpeg" }));
+          },
+          "image/jpeg",
+          quality
+        );
+      };
+      img.onerror = reject;
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -42,6 +71,7 @@ export default function Contact() {
   const [nextId, setNextId] = useState(1);
   const [photos, setPhotos] = useState<File[]>([]);
   const [photoError, setPhotoError] = useState("");
+  const [isProcessingPhoto, setIsProcessingPhoto] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -60,21 +90,37 @@ export default function Contact() {
     setRows(rows.filter((r) => r.id !== id));
   };
 
-  const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhotos = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (files.length > 1) {
       setPhotoError("Só é possível anexar 1 foto.");
       setPhotos([]);
       return;
     }
-    const totalMB = files.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
-    if (totalMB > MAX_TOTAL_MB) {
-      setPhotoError(`A foto não pode ultrapassar ${MAX_TOTAL_MB}MB.`);
+    if (files.length === 0) {
       setPhotos([]);
+      setPhotoError("");
       return;
     }
+
     setPhotoError("");
-    setPhotos(files);
+    setIsProcessingPhoto(true);
+
+    try {
+      const compressed = await compressImage(files[0]);
+      const totalMB = compressed.size / (1024 * 1024);
+      if (totalMB > MAX_TOTAL_MB) {
+        setPhotoError(`A foto não pode ultrapassar ${MAX_TOTAL_MB}MB mesmo depois de comprimida.`);
+        setPhotos([]);
+        return;
+      }
+      setPhotos([compressed]);
+    } catch {
+      setPhotoError("Não foi possível processar a imagem. Tenta outra foto.");
+      setPhotos([]);
+    } finally {
+      setIsProcessingPhoto(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -291,10 +337,14 @@ export default function Contact() {
                   type="file"
                   accept="image/*"
                   onChange={handlePhotos}
-                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all"
+                  disabled={isProcessingPhoto}
+                  className="w-full px-6 py-4 rounded-2xl bg-dark/5 border border-white/10 text-[#F2EDE4] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-teal/20 file:text-teal file:font-bold outline-none focus:border-teal transition-all disabled:opacity-60"
                 />
+                {isProcessingPhoto && (
+                  <p className="text-light/70 text-sm ml-2 animate-pulse">A processar imagem...</p>
+                )}
                 {photoError && <p className="text-red-400 text-sm ml-2">{photoError}</p>}
-                {photos.length > 0 && !photoError && (
+                {photos.length > 0 && !photoError && !isProcessingPhoto && (
                   <div className="flex items-center justify-between bg-dark/5 border border-white/10 rounded-xl px-4 py-2 mt-2">
                     <span className="text-sm text-light truncate">{photos[0].name}</span>
                     <button
